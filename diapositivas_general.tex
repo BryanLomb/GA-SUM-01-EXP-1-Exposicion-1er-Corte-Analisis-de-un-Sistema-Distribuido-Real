@@ -1,0 +1,20 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\graphicspath{{figuras/}}
+\addbibresource{referencias.bib}
+\title{Computación paralela en un sistema distribuido real}
+\subtitle{[PENDIENTE: nombre del sistema elegido en FORM-MC-01]}
+\author{GIRALDO CAGUA \and HERRERA BARCO \and GARCIA SANGOQUIZA \and LOMBEIDA ESCALERAS}
+\date{}
+\begin{document}
+% La identificación del equipo y del sistema debe integrarse en la diapositiva 1.
+% No se agrega portada separada: hay 12 minutos para 12 diapositivas de contenido.
+\input{diapositivas/giraldo_cagua.tex}
+\input{diapositivas/herrera_barco.tex}
+\input{diapositivas/garcia_sangoquiza.tex}
+\input{diapositivas/lombeida_escaleras.tex}
+% Diapositiva de respaldo: no contar dentro de los 12 minutos.
+\begin{frame}[allowframebreaks]{Referencias}\printbibliography[heading=none]\end{frame}
+\end{document}
