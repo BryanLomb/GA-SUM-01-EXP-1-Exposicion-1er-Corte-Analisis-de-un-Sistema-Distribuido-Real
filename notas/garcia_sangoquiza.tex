@@ -1,2 +1,32 @@
 \section*{GARCIA SANGOQUIZA — CAP y PACELC (2 min) y comparación crítica (1 min)}
-[PENDIENTE: guion sustentado de tres minutos.]
+
+\subsection*{CAP: ejemplo general y aplicación propuesta a CLAB (unos 75 s)}
+Ejecutar tareas en paralelo no elimina la necesidad de coordinar los datos
+compartidos. CAP estudia un límite de esa coordinación distribuida: durante
+una partición de red no podemos garantizar simultáneamente consistencia y
+disponibilidad~\cite{gsGilbertLynch2002,gsIbmCap}.
+C significa que las operaciones se comportan como sobre una única copia
+actualizada; A, que toda petición a un nodo operativo termina con una respuesta
+válida, no simplemente con un error; P contempla que los nodos pierdan comunicación.
+
+Imaginemos dos réplicas que venden la última unidad. Si quedan aisladas y ambas
+confirman la venta, pueden venderla dos veces. Para evitarlo, alguna debe dejar
+de confirmar mientras no pueda coordinarse.
+
+En CLAB, propongo el mismo razonamiento para dos nodos que intentan reservar
+el mismo laboratorio y horario: el nodo aislado no confirma una reserva sin
+coordinarla. Se prioriza consistencia sobre disponibilidad de esa operación.
+Es una propuesta, no una función implementada: la base E1 solo consulta
+Laboratorios desde Reservas por HTTP; todavía no tiene reservas ni
+persistencia~\cite{gsClabE1}. Dos servicios no demuestran paralelismo ni permiten
+clasificar automáticamente todo CLAB como CP.
+
+\subsection*{PACELC y comparación crítica}
+[PENDIENTE: desarrollar PACELC y contrastar dos enfoques tecnológicos;
+ajustar el guion completo a tres minutos mediante ensayo.]
+
+\paragraph{Declaración de uso de IA de esta sección.}
+Se utilizó OpenAI GPT-6.1 Sol para preparar este borrador de diapositiva y notas,
+consultar fuentes y revisar su correspondencia con el código de CLAB.
+La revisión personal, la adaptación del guion y el ensayo del expositor están
+pendientes. Los ejemplos son ilustrativos, no resultados experimentales.

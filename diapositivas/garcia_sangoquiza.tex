@@ -1,6 +1,22 @@
-% GARCIA SANGOQUIZA — sustituir marcadores antes de la entrega
-\begin{frame}{Partición durante el trabajo paralelo}
-  [PENDIENTE: contenido verificado y cita]\par
+% GARCIA SANGOQUIZA — CAP; PACELC y comparación pendientes.
+\begin{frame}{CAP: coordinar datos al ejecutar en paralelo}
+  \small
+  \textbf{Con una partición de red no se garantizan C y A a la vez.}
+  \begin{description}
+    \item[C] Consistencia: operaciones como sobre una única copia actualizada.
+    \item[A] Disponibilidad: cada petición a un nodo operativo se completa.
+    \item[P] Tolerancia a la pérdida de comunicación entre nodos.
+  \end{description}
+  \begin{block}{Ejemplo general: dos réplicas, una última unidad}
+    Aisladas, ambas aceptan una venta: se arriesga la sobreventa.
+    Coordinar antes de confirmar puede impedir completar una venta.
+  \end{block}
+  \begin{block}{CLAB: dos nodos intentan reservar el mismo laboratorio}
+    \textbf{Propuesta:} sin coordinación, el nodo aislado no confirma
+    la reserva. Se prioriza C sobre A para esa operación.
+  \end{block}
+  {\scriptsize Escenarios ilustrativos; CLAB actual no implementa reservas
+  ni réplicas. Fuentes: \cite{gsGilbertLynch2002,gsClabE1}.}
 \end{frame}
 
 \begin{frame}{Estado y latencia sin partición}
