@@ -22,7 +22,7 @@ archivos deben sustituirse por contenido verificado antes de la entrega.
 | `diapositivas/` | Un archivo `.tex` por integrante con sus diapositivas. |
 | `notas/` | Un archivo `.tex` por integrante con su guion. |
 | `identidad.sty` | Identidad visual: paleta de colores, estilo de títulos y pie de diapositiva. |
-| `referencias.bib` | Bibliografía en formato BibTeX (actualmente vacía, pendiente de completar). |
+| `referencias.bib` | Bibliografía en formato BibTeX con las fuentes verificadas. |
 | `figuras/` | Imágenes utilizadas por las diapositivas. |
 | `evidencias/` | Evidencias del trabajo del equipo. |
 | `BITACORA.md` | Registro de las sesiones de trabajo. |
@@ -81,6 +81,6 @@ pdflatex -output-directory=/tmp/opencode/build diapositivas_general.tex
 cp /tmp/opencode/build/diapositivas_general.pdf .
 ```
 
-Mientras `referencias.bib` esté vacío, `biblatex` avisará de una bibliografía
-vacía; el PDF se genera igualmente y el aviso desaparecerá al agregar las
-fuentes definitivas.
+La bibliografía se genera con `biber` a partir de `referencias.bib`. Si se
+agregan o modifican fuentes, debe repetirse la secuencia completa para
+actualizar las citas y la lista final.

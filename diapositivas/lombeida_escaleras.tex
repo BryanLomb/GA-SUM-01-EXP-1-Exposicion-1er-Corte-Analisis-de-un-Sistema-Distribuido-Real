@@ -1,7 +1,33 @@
 % LOMBEIDA ESCALERAS — sustituir marcadores antes de la entrega
-\begin{frame}{Fallos de la ejecución paralela}
-  [PENDIENTE: contenido verificado y cita]\par
+\renewcommand{\fuentespie}{Fuentes: \cite{assiri2025,mushtaq2024}}
+\begin{frame}{Tolerancia a fallos y tipos de fallos}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Tolerancia a fallos}
+        Seguir funcionando correctamente aunque ocurran fallos.~\cite{assiri2025}
+      \end{block}
+
+      \vspace{0.8em}
+      {\small
+      \textbf{Fallo} (causa)\\
+      $\downarrow$ \textbf{error} (estado)\\
+      $\downarrow$ \textbf{falla} (servicio)~\cite{mushtaq2024}\par}
+    \end{column}
+
+    \begin{column}{0.50\textwidth}
+      \begin{block}{Tipos de fallos}
+        \small
+        \begin{itemize}
+          \item \textbf{Nodos:} máquina caída o lenta.
+          \item \textbf{Comunicación:} mensajes perdidos o tardíos.
+          \item \textbf{Procesos:} bloqueo o respuesta errónea.
+          \item \textbf{Recursos:} CPU, memoria o disco agotados.~\cite{mushtaq2024}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
 \begin{frame}{Incidente real y causas raíz}
   [PENDIENTE: contenido verificado y cita]\par

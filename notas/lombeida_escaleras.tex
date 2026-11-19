@@ -1,2 +1,21 @@
-\section*{LOMBEIDA ESCALERAS — Tolerancia a fallos (2 min) y lecciones/conclusiones (1 min)}
-[PENDIENTE: guion sustentado de tres minutos.]
+\section*{LOMBEIDA ESCALERAS — Tolerancia a fallos y conclusiones}
+
+\noindent\textit{Distribución prevista: 2 minutos para tolerancia y tipos de fallos; 1 minuto para el caso, las lecciones y las conclusiones.}
+
+\subsection*{Diapositiva 10 — Tolerancia a fallos y tipos de fallos}
+
+\textbf{Idea central.} La tolerancia a fallos es la capacidad de un sistema distribuido de seguir funcionando correctamente cuando se producen fallos.~\cite{assiri2025} En un sistema distribuido no se puede evitar que algo falle; lo que sí se puede hacer es evitar que ese fallo se convierta en una interrupción del servicio.
+
+\textbf{Fallo, error y falla.} Conviene distinguir tres términos que suelen confundirse. El \emph{fallo} es la causa o defecto interno; el \emph{error} es el estado incorrecto que ese defecto produce; y la \emph{falla} es la pérdida del servicio que percibe el usuario.~\cite{mushtaq2024} La cadena es fallo $\rightarrow$ error $\rightarrow$ falla, y la tolerancia a fallos busca cortarla antes de que llegue al usuario.
+
+\textbf{Tipos de fallos.} Se agrupan en cuatro tipos~\cite{mushtaq2024}:
+\begin{itemize}
+  \item \textbf{Nodos:} una máquina se cae o responde muy lento.
+  \item \textbf{Comunicación:} los mensajes se pierden, se duplican o llegan tarde.
+  \item \textbf{Procesos:} un proceso se bloquea o entrega una respuesta incorrecta.
+  \item \textbf{Recursos:} se agota la CPU, la memoria, el disco o la red.
+\end{itemize}
+
+\textbf{Enlace con SGRA.} En nuestro caso, el fallo que nos interesa es de comunicación o de recurso externo: Groq Cloud no responde a tiempo. Eso lo retomamos en la diapositiva 12.
+
+[PENDIENTE: diapositivas 11 y 12.]
