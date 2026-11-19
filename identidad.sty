@@ -1,0 +1,47 @@
+%% identidad.sty — identidad visual de las diapositivas
+%% Paleta y estructura tomadas de las capturas de referencia.
+\ProvidesPackage{identidad}
+
+\definecolor{idAzul}{HTML}{174175}
+\definecolor{idAzulMedio}{HTML}{2D568A}
+\definecolor{idAzulClaro}{HTML}{B7C8D2}
+\definecolor{idVerde}{HTML}{7F915F}
+\definecolor{idGris}{HTML}{747779}
+\definecolor{idFondo}{HTML}{F0F4F5}
+
+\setbeamercolor{normal text}{fg=idAzulMedio!85!black,bg=idFondo}
+\setbeamercolor{structure}{fg=idAzul}
+\setbeamercolor{alerted text}{fg=idVerde}
+\setbeamercolor{frametitle}{fg=idAzul,bg=idFondo}
+\setbeamercolor{footline}{fg=idGris,bg=idFondo}
+\setbeamercolor{block title}{fg=idFondo,bg=idAzulMedio}
+\setbeamercolor{block body}{fg=idAzulMedio!85!black,bg=idAzulClaro!20}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{itemize item}{\raisebox{0.12ex}{\small$\circ$}}
+\setbeamertemplate{itemize subitem}{\raisebox{0.12ex}{\footnotesize$\circ$}}
+
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \vspace*{0.06\paperheight}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.7ex,dp=1.3ex,
+    leftskip=0.055\paperwidth,rightskip=0.03\paperwidth]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{footline}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.1ex,
+    leftskip=0.055\paperwidth,rightskip=0.03\paperwidth]{footline}
+    \scriptsize
+    \makebox[0.50\paperwidth][l]{Aplicaciones Distribuidas - SPA 2026-2027 - Semana 4}%
+    \hfill
+    \makebox[0.20\paperwidth][r]{Fuentes: [PENDIENTE]}%
+    \hfill
+    \makebox[1.5em][r]{\insertframenumber}%
+  \end{beamercolorbox}%
+}
+
+\endinput
