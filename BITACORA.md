@@ -54,3 +54,16 @@
 - Solución: se mantuvo el texto breve de las diapositivas y se desarrolló la relación con la computación paralela en las notas: trabajadores simultáneos, dependencia del resultado conjunto, detección de fallos y recuperación del trabajo. Se distinguió expresamente el respaldo local de SGRA de la replicación y de la ejecución paralela.
 
 - Tiempo dedicado: 1 hora y media.
+
+## Sesión 4: 19 de noviembre de 2026
+
+- Integrantes presentes: Diego Giraldo Cagua.
+- Actividades realizadas:
+  - Configuración del entorno en Windows PowerShell con Java 21, Python 3.12.7 y PySpark 4.3.0. Se verificó la instalación ejecutando una prueba local con dos particiones.
+  - Desarrollo de una práctica de Apache Spark aplicada al PFC de revisión técnica vehicular (RTV). Se usaron cuatro identificadores ficticios de vehículos para mostrar cómo Spark divide los datos con `parallelize()`, define el procesamiento con `map()` y recupera los resultados con `collect()`.
+  - Ejecución de la práctica en modo local (`local[*]`) con dos y cuatro particiones. En Spark UI se revisaron los trabajos, las etapas y las tareas. Se registraron 2/2 y 4/4 tareas completadas en las etapas observadas, así como intervalos de ejecución superpuestos en la línea de tiempo.
+  - Registro de dos mediciones por configuración. El tiempo promedio fue de 1,8195 s con dos particiones y de 3,4206 s con cuatro. Se consideró el costo de coordinar más tareas como una posible explicación del aumento de tiempo en esta prueba.
+  - Documentación del código, los comandos, los resultados y las capturas en `evidencias/`. Se prepararon las notas de apoyo para explicar la práctica y se registró el uso de ChatGPT como apoyo durante la configuración, la interpretación de los resultados y la documentación.
+- Problema encontrado: PowerShell no reconocía inicialmente los comandos `java` y `python`. Además, la sesión de Spark se cerraba al terminar el programa, lo que impedía revisar las tareas en Spark UI.
+- Solución: se habilitó Java, se ejecutó Python con `py -3.12` y se configuró `PYSPARK_PYTHON` para que PySpark usara el intérprete correcto. Se dejó el programa esperando una entrada al final para mantener Spark UI disponible. La línea de tiempo se usó como evidencia de concurrencia en un solo equipo.
+- Tiempo dedicado: 2 horas.
