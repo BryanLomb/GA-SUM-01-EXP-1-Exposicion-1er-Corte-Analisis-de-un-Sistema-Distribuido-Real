@@ -1,2 +1,29 @@
-\section*{HERRERA BARCO — Transparencias (1,5 min) y modelos de comunicación (1,5 min)}
-[PENDIENTE: guion sustentado de tres minutos.]
+\section*{HERRERA BARCO — Transparencias y comunicación}
+
+\subsection*{Transparencias durante el trabajo paralelo}
+Cuando un trabajo se reparte entre varios nodos que se ejecutan en paralelo,
+el usuario no debería tener que saber cuántos nodos participan, dónde están
+ni qué ocurre si uno falla. La transparencia de distribución consiste en
+ocultar que los procesos y recursos están repartidos en varias computadoras,
+para que el conjunto se perciba como un solo sistema coherente
+\cite{hbVanSteen2016}.
+
+Se distinguen varios tipos. La de \textbf{acceso} oculta las diferencias en
+cómo se representan y acceden los datos; la de \textbf{ubicación}, dónde se
+encuentra el recurso; la de \textbf{concurrencia}, que varios usuarios lo
+comparten al mismo tiempo; la de \textbf{replicación}, que existen varias
+copias; y la de \textbf{fallos}, la falla y recuperación de un componente
+\cite{hbVanSteen2016}.
+
+En computación paralela esto es clave: mientras más nodos trabajan a la vez,
+más detalles de coordinación habría que exponer si no existieran estas
+transparencias. Sin embargo, la transparencia total no siempre es posible,
+porque hay latencias de red que no se pueden ocultar \cite{hbVanSteen2016}.
+
+% PENDIENTE: ejemplo del PFC (SSDC).
+
+\subsection*{Comunicación que coordina tareas}
+[PENDIENTE: cliente-servidor, peer-to-peer, híbrido; sockets, RPC y mensajería.]
+
+\subsection*{Espera y avance de tareas}
+[PENDIENTE: comunicación sincrónica y asincrónica.]
