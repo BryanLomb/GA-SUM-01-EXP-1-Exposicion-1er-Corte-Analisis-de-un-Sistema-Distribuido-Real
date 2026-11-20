@@ -1,4 +1,4 @@
-# Análisis de un sistema distribuido real
+# Computación paralela aplicada a los PFC
 
 **Enlace al video:** [PENDIENTE: enlace al video]
 
@@ -9,9 +9,13 @@ curso de Aplicaciones Distribuidas. Incluye las diapositivas de la
 presentación, las notas o guion de sustentación, la bibliografía y la bitácora
 de trabajo del equipo.
 
-El sistema real a analizar está pendiente de confirmación en el FORM-MC-01 y en
-el registro SGA, por lo que los marcadores `[PENDIENTE: …]` que aparecen en los
-archivos deben sustituirse por contenido verificado antes de la entrega.
+La exposición aborda computación paralela mediante ejemplos generales y
+aplicaciones a los proyectos de fin de curso (PFC) de los integrantes. Las
+secciones distinguen los ejemplos didácticos, las propuestas de diseño y las
+implementaciones o ejecuciones documentadas.
+
+El material está en desarrollo. Los marcadores `[PENDIENTE: …]` deben
+sustituirse por contenido verificado antes de la entrega.
 
 ### Estructura
 
@@ -22,11 +26,12 @@ archivos deben sustituirse por contenido verificado antes de la entrega.
 | `diapositivas/` | Un archivo `.tex` por integrante con sus diapositivas. |
 | `notas/` | Un archivo `.tex` por integrante con su guion. |
 | `identidad.sty` | Identidad visual: paleta de colores, estilo de títulos y pie de diapositiva. |
-| `referencias.bib` | Bibliografía en formato BibTeX con las fuentes verificadas. |
+| `referencias.bib` | Bibliografía en formato BibTeX con las fuentes citadas y de consulta. |
 | `figuras/` | Imágenes utilizadas por las diapositivas. |
 | `evidencias/` | Evidencias del trabajo del equipo. |
 | `BITACORA.md` | Registro de las sesiones de trabajo. |
 | `diapositivas_general.pdf` | PDF ya generado de la presentación. |
+| `notas_general.pdf` | PDF compilado de las notas. |
 
 ## Compilación
 
@@ -36,8 +41,7 @@ archivos deben sustituirse por contenido verificado antes de la entrega.
 - **Motor bibliográfico:** `biber`.
 - **Archivos principales:** `diapositivas_general.tex` y `notas_general.tex`.
 - **Paquetes requeridos:** `beamer`, `babel` (opción `spanish`), `graphicx`,
-  `geometry`, `biblatex` con `backend=biber` y `style=ieee`.
-- **Recomendado:** `csquotes` (lo sugiere `biblatex` al usar `babel`).
+  `geometry`, `csquotes`, `biblatex` con `backend=biber` y `style=ieee`.
 - **Archivo local:** `identidad.sty` debe estar en la raíz del repositorio.
 
 ### Orden de comandos
