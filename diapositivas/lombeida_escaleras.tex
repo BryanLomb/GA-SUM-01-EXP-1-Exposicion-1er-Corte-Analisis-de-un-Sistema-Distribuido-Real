@@ -29,9 +29,33 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\begin{frame}{Incidente real y causas raíz}
-  [PENDIENTE: contenido verificado y cita]\par
+\renewcommand{\fuentespie}{Fuentes: \cite{mushtaq2024,asch2025,chaurasia2024}}
+\begin{frame}{Detección y recuperación ante fallos}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Detección}
+        \small
+        \begin{itemize}
+          \item \textbf{Heartbeats:} señales periódicas de actividad.
+          \item \textbf{Timeouts:} límite de espera para sospechar un fallo.~\cite{chaurasia2024}
+          \item \textbf{Watchdogs:} vigilan señales tardías o ausentes.~\cite{asch2025}
+        \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.50\textwidth}
+      \begin{block}{Recuperación}
+        \small
+        \begin{itemize}
+          \item \textbf{Replicación:} mantener copias de respaldo.
+          \item \textbf{Reasignación:} trasladar tareas a otro nodo.
+          \item \textbf{Checkpoint y reinicio:} retomar un estado guardado.~\cite{mushtaq2024}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
 \begin{frame}{Lecciones para RTV y conclusiones}
   [PENDIENTE: contenido verificado y cita]\par

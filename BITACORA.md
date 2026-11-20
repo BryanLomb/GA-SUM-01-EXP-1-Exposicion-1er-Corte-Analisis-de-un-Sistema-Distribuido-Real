@@ -34,3 +34,23 @@
 - Solución: se movió la redefinición de `\fuentespie` antes de `\begin{frame}` y se restauró el valor por defecto después de `\end{frame}`; así la diapositiva 10 muestra `Fuentes: [1], [2]` y las demás conservan `[PENDIENTE]`. Se acortó el título de la sección de notas y la distribución de tiempos se trasladó al texto introductorio.
 
 - Tiempo dedicado: 2 horas y media.
+
+## Sesión 3: 19 de noviembre de 2026
+
+- Integrantes presentes: Bryan Humberto Lombeida Escaleras.
+
+- Actividades realizadas:
+  - Redacción de la diapositiva 11, «Detección y recuperación ante fallos», con dos bloques de frases breves: detección mediante heartbeats, timeouts y watchdogs; recuperación mediante replicación, reasignación y checkpoint/reinicio.
+  - Incorporación de las citas correspondientes y configuración de las fuentes del pie de la diapositiva 11.
+  - Redacción del guion y del material de apoyo para preguntas en `notas/lombeida_escaleras.tex`.
+  - Revisión del vínculo entre la tolerancia a fallos y el tema principal de computación paralela.
+  - Ampliación de las notas de las diapositivas 10 y 11 para explicar cómo el fallo de un trabajador puede impedir completar el resultado conjunto y cómo recuperar sus tareas, con un ejemplo didáctico de procesamiento de cuatro bloques de datos.
+  - Aclaración de que el respaldo Groq → validador Java de SGRA ilustra continuidad del servicio, pero no constituye por sí solo evidencia de ejecución paralela.
+  - Compilación de ambos PDFs con la secuencia `pdflatex → biber → pdflatex → pdflatex` y verificación del contenido y del pie de la diapositiva 11. Después de ampliar las explicaciones, se actualizó únicamente `notas_general.pdf`, conservando intacto el PDF de las diapositivas.
+  - Generación de los auxiliares de compilación en `/tmp/opencode/`, fuera del repositorio.
+
+- Problema encontrado: el contenido inicial explicaba la tolerancia a fallos en sistemas distribuidos de forma general, pero no hacía explícita su relación con la ejecución paralela; además, el caso de respaldo de SGRA podía confundirse con un ejemplo de paralelismo.
+
+- Solución: se mantuvo el texto breve de las diapositivas y se desarrolló la relación con la computación paralela en las notas: trabajadores simultáneos, dependencia del resultado conjunto, detección de fallos y recuperación del trabajo. Se distinguió expresamente el respaldo local de SGRA de la replicación y de la ejecución paralela.
+
+- Tiempo dedicado: 1 hora y media.
