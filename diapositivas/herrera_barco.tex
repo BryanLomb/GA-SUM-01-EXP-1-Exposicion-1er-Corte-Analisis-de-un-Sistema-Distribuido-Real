@@ -1,11 +1,33 @@
 % HERRERA BARCO — Transparencias y modelos de comunicación
+\renewcommand{\fuentespie}{Fuentes: \cite{hbVanSteen2016}}
 \begin{frame}{Transparencias durante el trabajo paralelo}
-  \begin{itemize}
-    \item ¿Por qué ocultar la distribución con múltiples nodos?
-    \item Acceso, ubicación, concurrencia, replicación y fallos
-    \item Ejemplo PFC: [PENDIENTE]
-  \end{itemize}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Transparencia}
+        Ocultar que procesos y recursos están repartidos en varios nodos.~\cite{hbVanSteen2016}
+      \end{block}
+
+      \vspace{0.8em}
+      {\small
+      Varios nodos trabajan en paralelo\\
+      $\downarrow$ el usuario ve \textbf{un solo sistema}\par}
+    \end{column}
+
+    \begin{column}{0.52\textwidth}
+      \begin{block}{Qué se oculta}
+        \small
+        \begin{itemize}
+          \item \textbf{Acceso:} cómo se accede al recurso.
+          \item \textbf{Ubicación:} dónde está el recurso.
+          \item \textbf{Concurrencia:} que otros lo usan a la vez.
+          \item \textbf{Replicación:} que existen varias copias.
+          \item \textbf{Fallos:} la falla y recuperación de un nodo.~\cite{hbVanSteen2016}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
 \begin{frame}{Comunicación que coordina tareas}
   \begin{itemize}
