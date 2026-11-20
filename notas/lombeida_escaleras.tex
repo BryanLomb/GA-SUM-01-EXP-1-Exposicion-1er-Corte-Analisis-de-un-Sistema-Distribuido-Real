@@ -40,4 +40,31 @@ Reiniciar desde un checkpoint no significa lo mismo que reintentar una petición
 El respaldo local de SGRA se describe en el documento interno \textit{SGRA: descripción técnica y funcional}; no se atribuye a las fuentes bibliográficas ni se presupone que tenga las mismas capacidades que Groq.
 Groq $\rightarrow$ validador Java es una alternativa activada ante un fallo, no evidencia por sí sola de computación paralela. Las diapositivas 10 y 11 explican los mecanismos generales y su aplicación al trabajo paralelo; SGRA ilustra cómo trasladar la lección de continuidad a la PFC.
 
-[PENDIENTE: diapositiva 12.]
+\subsection*{Diapositiva 12 — SGRA: lecciones para la PFC y conclusiones}
+
+\textbf{Guion sugerido (aproximadamente 1 minuto).}
+En nuestra PFC, SGRA, el documento técnico describe un respaldo: si Groq Cloud falla o no responde, interviene un validador Java local.
+Lo presentamos como un escenario previsto, no como un incidente ya comprobado.
+La falta de respuesta es un síntoma; sin registros ni pruebas no podemos confirmar la causa raíz.
+
+Las lecciones que proponemos aplicar son definir límites de espera, probar que se activa el respaldo y registrar errores y tiempos para investigar el problema.
+El validador no sustituye todas las capacidades de la IA: conserva una función de validación, no demuestra paralelismo.
+
+La conclusión para la computación paralela distribuida es que repartir el trabajo no basta: también hay que recuperar las tareas de los trabajadores que fallan para completar el resultado conjunto.~\cite{assiri2025,mushtaq2024}
+SGRA permite trasladar esa lección de continuidad a nuestra PFC, aunque su respaldo sea un mecanismo distinto.
+
+\textbf{Fuente del escenario.}
+El documento interno \textit{SGRA: descripción técnica y funcional}, sección 4, apartado «Integraciones externas», describe Groq Cloud y el validador Java de respaldo.
+Se menciona como contexto del proyecto y no se incorpora a la bibliografía académica.
+No hemos realizado todavía la prueba controlada ni verificado código o registros que demuestren la activación del respaldo.
+
+\textbf{Apoyo para preguntas: síntoma, causa y recuperación.}
+Una ausencia de respuesta puede deberse a problemas de comunicación, indisponibilidad del proveedor u otras condiciones; son hipótesis, no causas confirmadas.
+La dependencia de un servicio externo es una condición arquitectónica de riesgo, no la causa raíz demostrada de un incidente.
+Para distinguir las hipótesis se necesitarían registros del error, tiempos de la solicitud y evidencia del comportamiento del proveedor y del backend.
+El paso al validador Java es una alternativa funcional de respaldo, no una réplica de Groq ni una ejecución simultánea de ambos.
+
+\textbf{Alcance de las lecciones propuestas.}
+Definir límites de espera, probar la activación del respaldo y registrar su uso son recomendaciones para la PFC, no funcionalidades cuya implementación hayamos comprobado.
+La prueba práctica y sus evidencias se prepararán después; no se atribuyen resultados ni tiempos de recuperación todavía.
+El ejemplo de trabajadores paralelos de las notas anteriores es didáctico y no implica que SGRA ejecute ese flujo.

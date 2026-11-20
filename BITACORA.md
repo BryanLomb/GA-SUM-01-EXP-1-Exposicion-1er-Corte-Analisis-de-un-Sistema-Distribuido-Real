@@ -67,3 +67,22 @@
 - Problema encontrado: PowerShell no reconocía inicialmente los comandos `java` y `python`. Además, la sesión de Spark se cerraba al terminar el programa, lo que impedía revisar las tareas en Spark UI.
 - Solución: se habilitó Java, se ejecutó Python con `py -3.12` y se configuró `PYSPARK_PYTHON` para que PySpark usara el intérprete correcto. Se dejó el programa esperando una entrada al final para mantener Spark UI disponible. La línea de tiempo se usó como evidencia de concurrencia en un solo equipo.
 - Tiempo dedicado: 2 horas.
+
+## Sesión 5: 20 de noviembre de 2026
+
+- Integrantes presentes: Bryan Humberto Lombeida Escaleras.
+
+- Actividades realizadas:
+  - Revisión de los pasajes de Assiri y Sheneamer, Mushtaq et al. y Asch et al. para orientar las capturas de lectura: definición de tolerancia a fallos, tipos de fallos, relación fault/error/failure, recuperación y watchdogs.
+  - Identificación de las páginas y los fragmentos que respaldan las diapositivas 10 y 11.
+  - Redacción de la diapositiva 12, «SGRA: lecciones para la PFC y conclusiones», con poco texto: escenario Groq Cloud → validador Java local, causa raíz por determinar, recomendaciones y conclusión vinculada con la recuperación del trabajo paralelo.
+  - Redacción del guion de aproximadamente un minuto y del material de apoyo para preguntas de la diapositiva 12 en `notas/lombeida_escaleras.tex`.
+  - Distinción entre el escenario de respaldo descrito en el documento interno de SGRA, las recomendaciones para la PFC y los resultados que requerirían una prueba controlada.
+  - Compilación de `diapositivas_general.pdf` y `notas_general.pdf` mediante `pdflatex → biber → pdflatex → pdflatex`; verificación del texto y de las fuentes del pie de la diapositiva 12.
+  - Generación de los auxiliares de compilación en `/tmp/opencode/`, fuera del repositorio.
+
+- Problema encontrado: el documento interno describe el respaldo de SGRA, pero no demuestra un incidente ocurrido, su causa raíz ni resultados de una prueba. Presentarlo como un hecho observado podía confundir continuidad del servicio con evidencia de ejecución paralela.
+
+- Solución: se presentó el caso como escenario previsto y se indicó que la causa raíz está por determinar. Las notas distinguen el síntoma de las posibles causas, aclaran que el validador Java no es una réplica de Groq ni demuestra paralelismo y conectan la conclusión con la recuperación de tareas en computación paralela distribuida. La prueba práctica y sus evidencias quedaron para una etapa posterior.
+
+- Tiempo dedicado: 1 hora y media.
