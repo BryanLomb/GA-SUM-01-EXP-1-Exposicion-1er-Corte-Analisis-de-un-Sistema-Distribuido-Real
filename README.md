@@ -41,7 +41,8 @@ sustituirse por contenido verificado antes de la entrega.
 - **Motor bibliográfico:** `biber`.
 - **Archivos principales:** `diapositivas_general.tex` y `notas_general.tex`.
 - **Paquetes requeridos:** `beamer`, `babel` (opción `spanish`), `graphicx`,
-  `geometry`, `csquotes`, `biblatex` con `backend=biber` y `style=ieee`.
+  `geometry`, `csquotes`, `booktabs`, `tikz` con la biblioteca `arrows.meta`,
+  `hyperref`, `biblatex` con `backend=biber` y `style=ieee`.
 - **Archivo local:** `identidad.sty` debe estar en la raíz del repositorio.
 
 ### Orden de comandos
