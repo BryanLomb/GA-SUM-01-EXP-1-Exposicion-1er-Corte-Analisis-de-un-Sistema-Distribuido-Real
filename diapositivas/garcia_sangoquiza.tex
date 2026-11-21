@@ -1,4 +1,4 @@
-% GARCIA SANGOQUIZA — CAP; PACELC y comparación pendientes.
+% GARCIA SANGOQUIZA — CAP y PACELC; comparación pendiente.
 \renewcommand{\fuentespie}{Fuentes: \cite{gsGilbertLynch2002,gsClabE1}}
 \begin{frame}{CAP: coordinar datos al ejecutar en paralelo}
   \small
@@ -21,9 +21,35 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\begin{frame}{Estado y latencia sin partición}
-  [PENDIENTE: contenido verificado y cita]\par
+\renewcommand{\fuentespie}{Fuentes: \cite{gsAbadi2012,gsMicrosoftConsistency2025}}
+\begin{frame}{PACELC: coordinar también cuesta sin fallos}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Si hay partición (P)}
+        Disponibilidad (A)\par
+        frente a consistencia (C).
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Si no la hay (E)}
+        Menor latencia (L)\par
+        frente a consistencia (C).
+      \end{block}
+    \end{column}
+  \end{columns}
+  \begin{block}{Ejemplo general: leer un precio replicado}
+    Réplica cercana: menos espera posible, pero un valor antiguo.\par
+    Lectura actualizada: puede exigir comunicación adicional.
+  \end{block}
+  \begin{block}{CLAB propuesto: consultas paralelas de disponibilidad}
+    Consultar réplicas orienta; \textbf{no confirma una reserva}.\par
+    La confirmación requiere validación y registro atómicos coordinados.
+  \end{block}
+  {\scriptsize Datos replicados hipotéticos; no implementados ni medidos en
+  CLAB. Fuentes: \cite{gsAbadi2012,gsMicrosoftConsistency2025}.}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
 \begin{frame}{Comparación de sistemas de cómputo paralelo}
   [PENDIENTE: contenido verificado y cita]\par
