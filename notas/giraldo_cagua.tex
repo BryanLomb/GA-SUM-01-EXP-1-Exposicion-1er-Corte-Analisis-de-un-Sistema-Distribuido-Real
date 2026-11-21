@@ -1,2 +1,14 @@
-\section*{GIRALDO CAGUA — Presentación del sistema (1 min) y arquitectura (2 min)}
-[PENDIENTE: guion sustentado de tres minutos.]
+\section*{Introducción a la computación paralela y arquitectura}
+\textbf{Expone Diego José Giraldo Cagua \hfill 3 minutos}
+
+\subsection*{0:00--1:00 · Qué hace Spark y por qué paralelizar}
+Imaginen que debemos generar un resumen por vehículo. Si cada cálculo es independiente, podemos dividir los vehículos en grupos y avanzar en varios a la vez. Así podemos reducir el tiempo total o procesar más datos en el mismo tiempo. Si un solo flujo procesa los vehículos uno tras otro, la ejecución es secuencial. Si dos núcleos de la misma computadora calculan grupos a la vez, es paralela. Si varios equipos se reparten el trabajo por red, es distribuida, y también puede ser paralela si los equipos trabajan al mismo tiempo. Spark aplica este modelo al análisis de grandes conjuntos de datos. El proyecto reporta que lo usa el 80\,\% de las empresas Fortune 500. \cite{girTraff2026,girSparkHome}
+
+\subsection*{1:00--2:00 · Arquitectura y coordinación}
+Un nodo es un equipo del clúster. Dentro de un nodo puede haber procesadores con varios núcleos. En el diagrama, el \emph{driver} recibe el trabajo y solicita recursos al gestor del clúster. Con los recursos asignados, Spark inicia ejecutores en los nodos. El \emph{driver} programa las tareas y los ejecutores pueden correr varias a la vez en distintos hilos. Los ejecutores reportan su estado y, en una acción como \texttt{collect()}, el resultado vuelve al programa principal. YARN es un ejemplo de gestor de recursos para este tipo de despliegue. \cite{girSparkCluster,girSparkYarn,girSparkRdd}
+
+\subsection*{2:00--3:00 · Aplicación al PFC de revisión vehicular}
+En mi equipo probé cuatro identificadores ficticios con PySpark en modo local. Con \texttt{parallelize()} dividí los datos en particiones. Con \texttt{map()} indiqué la operación para cada identificador. La acción \texttt{collect()} lanzó el cálculo y devolvió los mensajes de procesamiento. Con dos particiones se completaron dos tareas y obtuve un promedio de 1,8195 segundos. Con cuatro se completaron cuatro tareas y obtuve 3,4206 segundos. Los intervalos superpuestos en Spark UI mostraron concurrencia. La coordinación de más tareas pudo influir en el tiempo observado. Para un lote mayor de reportes, probaría varios tamaños antes de elegir el particionado. Los estudios en clúster muestran que también influyen el reparto de tareas y la ubicación de los datos. \cite{girSparkPartitions,girSparkLocality}
+
+\smallskip
+\noindent\textbf{Evidencia.} \href{https://github.com/BryanLomb/GA-SUM-01-EXP-1-Exposicion-1er-Corte-Analisis-de-un-Sistema-Distribuido-Real/commit/b998007a13fb2a36c58156077c1bd705cc9a2854}{Registro de las dos mediciones por configuración en el repositorio de entrega}.
