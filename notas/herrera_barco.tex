@@ -1,29 +1,55 @@
 \section*{HERRERA BARCO — Transparencias y comunicación}
 
 \subsection*{Transparencias durante el trabajo paralelo}
-Cuando un trabajo se reparte entre varios nodos que se ejecutan en paralelo,
-el usuario no debería tener que saber cuántos nodos participan, dónde están
-ni qué ocurre si uno falla. La transparencia de distribución consiste en
-ocultar que los procesos y recursos están repartidos en varias computadoras,
-para que el conjunto se perciba como un solo sistema coherente
-\cite{hbVanSteen2016}.
+Un sistema distribuido está formado por nodos en distintos lugares que se
+coordinan intercambiando mensajes, pero que el usuario percibe como una sola
+unidad \cite{hbFreitas2025}. Cuando un trabajo se reparte entre varios nodos
+que se ejecutan en paralelo, el usuario no debería tener que saber cuántos
+nodos participan, dónde están ni qué ocurre si uno falla.
 
-Se distinguen varios tipos. La de \textbf{acceso} oculta las diferencias en
-cómo se representan y acceden los datos; la de \textbf{ubicación}, dónde se
-encuentra el recurso; la de \textbf{concurrencia}, que varios usuarios lo
-comparten al mismo tiempo; la de \textbf{replicación}, que existen varias
-copias; y la de \textbf{fallos}, la falla y recuperación de un componente
-\cite{hbVanSteen2016}.
+La transparencia de \textbf{acceso} significa que los recursos locales y
+remotos se usan con las mismas operaciones. Esto permite, por ejemplo, ejecutar
+en la nube una aplicación paralela pensada para una sola máquina sin
+modificarla \cite{hbArjona2023}. La de \textbf{ubicación} oculta dónde se
+encuentra el recurso. Cuando los datos se replican en varios sitios, la
+\textbf{replicación} acerca los datos al usuario y aporta tolerancia a fallos;
+y como varias réplicas se actualizan al mismo tiempo, el sistema debe hacer
+que converjan a una vista consistente, lo que corresponde a la
+\textbf{concurrencia} \cite{hbFreitas2025}. La transparencia de
+\textbf{fallos} se apoya en esas réplicas para que el servicio continúe.
 
-En computación paralela esto es clave: mientras más nodos trabajan a la vez,
-más detalles de coordinación habría que exponer si no existieran estas
-transparencias. Sin embargo, la transparencia total no siempre es posible,
-porque hay latencias de red que no se pueden ocultar \cite{hbVanSteen2016}.
-
-% PENDIENTE: ejemplo del PFC (SSDC).
+% PENDIENTE: fuente para transparencia de ubicación; ejemplo del PFC (SSDC).
 
 \subsection*{Comunicación que coordina tareas}
-[PENDIENTE: cliente-servidor, peer-to-peer, híbrido; sockets, RPC y mensajería.]
+Para que varios nodos trabajen en paralelo deben coordinarse intercambiando
+mensajes. En el modelo \textbf{cliente-servidor}, los servicios exponen
+interfaces REST u otros mecanismos de solicitud y respuesta
+\cite{hbSimoes2026}. En el modelo \textbf{peer-to-peer}, los participantes
+interactúan directamente, sin un intermediario central \cite{hbSaleh2025}. El
+modelo \textbf{híbrido} combina un coordinador central con nodos que se
+comunican entre sí.
+
+Los mecanismos van del más bajo al más alto nivel. Los \textbf{sockets}
+transmiten bytes por canales TCP o UDP. La \textbf{RPC}, por ejemplo con gRPC,
+permite invocar un procedimiento en otro servicio \cite{hbSimoes2026}. La
+\textbf{mensajería} usa un intermediario cuyas colas guardan temporalmente los
+mensajes; el modelo publicación/suscripción desacopla la entrega de mensajes
+de quienes los envían y los reciben \cite{hbSaleh2025}.
+
+% PENDIENTE: fuente para híbrido y sockets; ejemplo del SSDC.
 
 \subsection*{Espera y avance de tareas}
-[PENDIENTE: comunicación sincrónica y asincrónica.]
+En la comunicación \textbf{sincrónica}, quien envía la solicitud espera la
+respuesta antes de continuar; REST y gRPC son ejemplos habituales
+\cite{hbSimoes2026}. En la comunicación \textbf{asincrónica} no se espera una
+respuesta inmediata: por ejemplo, una tienda puede registrar un pago como
+pendiente mientras el banco lo procesa, usando MQTT \cite{hbSimoes2026}. Los
+intermediarios de mensajes con publicación/suscripción también aprovechan
+este tipo de comunicación \cite{hbSaleh2025}.
+
+La relación con la computación paralela es directa: si cada tarea esperara
+de forma sincrónica a las demás, el trabajo avanzaría en serie; con
+comunicación asincrónica, una tarea puede seguir avanzando mientras otra
+espera una respuesta.
+
+% PENDIENTE: ejemplo del SSDC.
