@@ -1,84 +1,36 @@
 \section*{HERRERA BARCO — Transparencias y comunicación}
 
 \subsection*{Transparencias durante el trabajo paralelo}
-Un sistema distribuido está formado por nodos en distintos lugares que se
-coordinan intercambiando mensajes, pero que el usuario percibe como una sola
-unidad \cite{hbFreitas2025}. Cuando un trabajo se reparte entre varios nodos
-que se ejecutan en paralelo, el usuario no debería tener que saber cuántos
-nodos participan, dónde están ni qué ocurre si uno falla.
-
-La transparencia de \textbf{acceso} significa que los recursos locales y
-remotos se usan con las mismas operaciones. Esto permite, por ejemplo, ejecutar
-en la nube una aplicación paralela pensada para una sola máquina sin
-modificarla \cite{hbArjona2023}. La de \textbf{ubicación} oculta dónde se
-encuentra el recurso: por ejemplo, el servidor de desarrollo de Angular puede
-desviar las rutas como \texttt{/api} hacia un servidor backend, de modo que la
-aplicación pide la ruta sin conocer la dirección del servidor
-\cite{hbAngularProxy}. Cuando los datos se replican en varios sitios, la
-\textbf{replicación} acerca los datos al usuario y aporta tolerancia a fallos;
-y como varias réplicas se actualizan al mismo tiempo, el sistema debe hacer
-que converjan a una vista consistente, lo que corresponde a la
-\textbf{concurrencia} \cite{hbFreitas2025}. La transparencia de
-\textbf{fallos} se apoya en esas réplicas para que el servicio continúe.
+Un sistema distribuido coordina nodos mediante mensajes, pero el usuario lo
+percibe como una sola unidad \cite{hbFreitas2025}. Al repartir un trabajo
+entre nodos paralelos, se ocultan el \textbf{acceso} (recursos locales y
+remotos con las mismas operaciones) \cite{hbArjona2023}, la
+\textbf{ubicación} (Angular pide \texttt{/api} sin conocer la dirección del
+servidor) \cite{hbAngularProxy}, y la \textbf{concurrencia},
+\textbf{replicación} y \textbf{fallos}: las réplicas acercan los datos, toleran
+fallos y deben converger aunque se actualicen a la vez \cite{hbFreitas2025}.
 
 \subsection*{Comunicación que coordina tareas}
-Para que varios nodos trabajen en paralelo deben coordinarse intercambiando
-mensajes. En el modelo \textbf{cliente-servidor}, los servicios exponen
-interfaces REST u otros mecanismos de solicitud y respuesta
-\cite{hbSimoes2026}. En el modelo \textbf{peer-to-peer}, los participantes
-interactúan directamente, sin un intermediario central \cite{hbSaleh2025}. El
-modelo \textbf{híbrido} combina ambos: en BitTorrent, un servidor central
-llamado \emph{tracker} entrega a cada participante la lista de los demás, y
-después los participantes intercambian las partes del archivo directamente
-entre ellos \cite{hbBep3}.
-
-Los mecanismos van del más bajo al más alto nivel. Un \textbf{socket} es un
-extremo de un enlace de comunicación bidireccional entre dos programas que se
-ejecutan en la red; en las aplicaciones cliente-servidor, TCP ofrece sobre
-ellos un canal confiable punto a punto \cite{hbOracleSockets}. La \textbf{RPC}, por ejemplo con gRPC,
-permite invocar un procedimiento en otro servicio \cite{hbSimoes2026}. La
-\textbf{mensajería} usa un intermediario cuyas colas guardan temporalmente los
-mensajes; el modelo publicación/suscripción desacopla la entrega de mensajes
-de quienes los envían y los reciben \cite{hbSaleh2025}.
+Los modelos son \textbf{cliente-servidor}, de solicitud y respuesta
+\cite{hbSimoes2026}; \textbf{peer-to-peer}, con participantes que interactúan
+directamente \cite{hbSaleh2025}; e \textbf{híbrido}, como BitTorrent, donde un
+\emph{tracker} central entrega la lista de participantes y estos intercambian
+datos entre sí \cite{hbBep3}. Los mecanismos van de los \textbf{sockets},
+extremos de un enlace bidireccional entre programas \cite{hbOracleSockets}, a
+la \textbf{RPC} \cite{hbSimoes2026} y la \textbf{mensajería} con colas que
+desacoplan emisor y receptor \cite{hbSaleh2025}.
 
 \subsection*{Espera y avance de tareas}
-En la comunicación \textbf{sincrónica}, quien envía la solicitud espera la
-respuesta antes de continuar; REST y gRPC son ejemplos habituales
-\cite{hbSimoes2026}. En la comunicación \textbf{asincrónica} no se espera una
-respuesta inmediata: por ejemplo, una tienda puede registrar un pago como
-pendiente mientras el banco lo procesa, usando MQTT \cite{hbSimoes2026}. Los
-intermediarios de mensajes con publicación/suscripción también aprovechan
-este tipo de comunicación \cite{hbSaleh2025}.
+En la comunicación \textbf{sincrónica} el emisor espera la respuesta; en la
+\textbf{asincrónica} no se espera una respuesta inmediata \cite{hbSimoes2026}.
+Así, una tarea sigue avanzando mientras otra espera.
 
-La relación con la computación paralela es directa: si cada tarea esperara
-de forma sincrónica a las demás, el trabajo avanzaría en serie; con
-comunicación asincrónica, una tarea puede seguir avanzando mientras otra
-espera una respuesta.
-
-\subsubsection*{Aplicación al PFC: notificación de resultados en el SSDC}
-En nuestro PFC, el SSDC, esto ocurre cuando el comité registra su decisión
-sobre una solicitud docente. El controlador llama a
-\texttt{enviarCorreosDecision}, un método marcado con \texttt{@Async}, y
-responde al comité sin esperar los correos. Ese método recorre a los
-postulantes y llama, para cada uno, a \texttt{enviarResultadoSeleccion},
-que también es \texttt{@Async}. Spring reparte esos envíos entre los hilos
-de su grupo de tareas, que por defecto tiene ocho, así que varios correos se
-envían a la vez.
-
-Para observarlo, preparé una práctica en Java que reproduce este flujo con
-16 postulantes ficticios y un tiempo de correo simulado de 500 ms. Con un
-solo hilo, los correos salen uno tras otro y el tiempo total fue de
-8064 ms en promedio; con ocho hilos, como en el SSDC, bajó a
-1035,5 ms, una aceleración de 7,79 veces. Al duplicar los postulantes a 32,
-con un hilo el tiempo también se duplicó, mientras que con ocho hilos
-subió solo a unos 2 segundos. Los hilos pasan casi todo
-ese tiempo esperando al servidor de correo, por lo que lo que se superpone
-son las esperas, no el cálculo; la práctica no mide la velocidad real del
-SSDC.
-
-En la práctica, el correo del postulante 5 falla a propósito. Los otros 15
-se entregan y el comité no se entera del fallo en su respuesta: el error
-queda en el hilo del correo. En el código del SSDC pasa lo mismo, porque el
-\texttt{try/catch} del bucle no puede atrapar un error que ocurre en otro
-hilo. Es el costo de no esperar: la asincronía oculta el fallo a quien hizo
-la solicitud.
+\textbf{Aplicación al SSDC.} Cuando el comité registra su decisión,
+\texttt{enviarCorreosDecision} (\texttt{@Async}) responde sin esperar y llama a
+\texttt{enviarResultadoSeleccion} (\texttt{@Async}) por cada postulante; Spring
+reparte los correos entre sus 8 hilos por defecto. En la práctica en Java, con
+16 postulantes ficticios y 500 ms por correo simulado, el tiempo promedio bajó
+de 8064 ms con un hilo a 1035,5 ms con ocho (7,79 veces). Se superponen
+esperas, no cálculo, y no se mide la velocidad real del SSDC. El correo que
+falla a propósito no detiene a los demás, pero el comité no se entera: el
+\texttt{try/catch} del bucle no atrapa errores de otro hilo.
