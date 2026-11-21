@@ -103,3 +103,23 @@
 - Solución: se reintenta únicamente la comprobación fallida y se conservan las demás. Si el segundo intento falla, la franja queda sin comprobar. El material de exposición separa el cálculo local en Java de la aceptación de la solicitud en SGRA.
 
 - Tiempo dedicado: 1 hora y media.
+
+## Sesión 7: 21 de noviembre de 2026
+
+- Integrantes presentes: GARCIA SANGOQUIZA.
+
+- Actividades realizadas:
+  - Publicación de la comparación de primario PostgreSQL y réplicas asíncronas para CLAB, con sus referencias, notas y PDF actualizados, conservando los avances del equipo.
+  - Incorporación de un modelo Python de CAP y PACELC con dos procesos, doce pruebas automatizadas e instrucciones compatibles con fish. El código usa datos sintéticos y no modifica el backend CLAB.
+  - Ejecución personal en Arch Linux con Python 3.14.8 de dos casos: venta de la última unidad y reserva de LAB-01 de 09:00 a 10:00. Se conservaron las capturas originales y los JSON de las ejecuciones iniciadas a las 15:56:55 y 15:59:42, respectivamente, en la zona horaria UTC−05:00.
+  - Registro de los resultados: dos ventas locales para una unidad sin coordinación; una sola reserva CLAB confirmada y la otra rechazada por cruce; solicitud B sin confirmar al no poder coordinar; copia atrasada libre frente a autoridad ocupada.
+  - Publicación de las evidencias en `evidencias/garcia_sangoquiza/` y del código en `practicas/garcia_sangoquiza/`. Ambos JSON contienen el SHA-256 de la misma versión del programa.
+  - Integración de las dos capturas como páginas de respaldo con enlaces desde CAP y PACELC y botones de regreso, sin renumerar las doce diapositivas principales. Se publicaron los PDF regenerados y se actualizaron las notas con los resultados personales.
+
+- Problema encontrado: consultar una copia que indica disponibilidad no garantiza que una operación pueda confirmarse sin conflicto. Además, la concurrencia de procesos, el trabajo CPU artificial y la espera introducida para PACELC podían confundirse con rendimiento del backend o con una partición de red real.
+
+- Solución: se separaron consulta y confirmación en el modelo; el coordinador confirma una sola reserva y deja sin confirmar las solicitudes que no pueden coordinar. Las capturas, las notas y la documentación identifican expresamente la partición modelada, los datos sintéticos y los 80 ms de espera impuesta.
+
+- Alcance de los resultados: la CPU acumulada superó la ventana de ejecución en ambos casos, lo que aporta evidencia compatible con uso simultáneo de más de una CPU lógica para el trabajo artificial. No se atribuye aceleración ni latencia medida a CLAB, no se cortó la red y no se implementaron reservas o replicación en su backend.
+
+- Apoyo de IA: la preparación del modelo, sus pruebas y los materiales de explicación recibió asistencia de IA. Las capturas y los JSON corresponden a la ejecución personal registrada.
