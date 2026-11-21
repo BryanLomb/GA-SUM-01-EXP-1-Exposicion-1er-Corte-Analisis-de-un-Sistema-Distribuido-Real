@@ -1,5 +1,5 @@
 % HERRERA BARCO — Transparencias y modelos de comunicación
-\renewcommand{\fuentespie}{Fuentes: \cite{hbFreitas2025,hbArjona2023}}
+\renewcommand{\fuentespie}{Fuentes: \cite{hbFreitas2025,hbArjona2023,hbAngularProxy}}
 \begin{frame}{Transparencias durante el trabajo paralelo}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.44\textwidth}
@@ -18,7 +18,7 @@
         \small
         \begin{itemize}
           \item \textbf{Acceso:} misma operación local o remota.~\cite{hbArjona2023}
-          \item \textbf{Ubicación:} dónde está el recurso.
+          \item \textbf{Ubicación:} se pide \texttt{/api}, no la dirección del servidor.~\cite{hbAngularProxy}
           \item \textbf{Concurrencia:} actualizaciones simultáneas.~\cite{hbFreitas2025}
           \item \textbf{Replicación:} copias en varios sitios.~\cite{hbFreitas2025}
           \item \textbf{Fallos:} las réplicas mantienen el servicio.~\cite{hbFreitas2025}
@@ -29,7 +29,7 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026,hbSaleh2025}}
+\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026,hbSaleh2025,hbBep3,hbOracleSockets}}
 \begin{frame}{Comunicación que coordina tareas}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.48\textwidth}
@@ -38,7 +38,7 @@
         \begin{itemize}
           \item \textbf{Cliente-servidor:} solicitud y respuesta.~\cite{hbSimoes2026}
           \item \textbf{Peer-to-peer:} los nodos interactúan directamente.~\cite{hbSaleh2025}
-          \item \textbf{Híbrido:} un coordinador central y nodos iguales.
+          \item \textbf{Híbrido:} un servidor central coordina y los nodos intercambian entre sí.~\cite{hbBep3}
         \end{itemize}
       \end{block}
     \end{column}
@@ -46,7 +46,7 @@
       \begin{block}{Mecanismos}
         \small
         \begin{itemize}
-          \item \textbf{Sockets:} canal TCP o UDP entre procesos.
+          \item \textbf{Sockets:} extremo de un enlace bidireccional entre dos programas.~\cite{hbOracleSockets}
           \item \textbf{RPC:} invocar un procedimiento remoto (gRPC).~\cite{hbSimoes2026}
           \item \textbf{Mensajería:} colas que guardan mensajes y desacoplan emisor y receptor.~\cite{hbSaleh2025}
         \end{itemize}
