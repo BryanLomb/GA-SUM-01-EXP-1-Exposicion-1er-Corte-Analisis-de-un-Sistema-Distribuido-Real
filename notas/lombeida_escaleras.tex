@@ -1,6 +1,6 @@
 \section*{LOMBEIDA ESCALERAS — Tolerancia a fallos y conclusiones}
 
-\noindent\textit{Distribución prevista: 2 minutos para tolerancia y tipos de fallos; 1 minuto para el caso, las lecciones y las conclusiones.}
+\noindent\textit{Distribución prevista: 2 minutos para fundamentos, detección y recuperación; 1 minuto para la práctica y las conclusiones.}
 
 \subsection*{Diapositiva 10 — Tolerancia a fallos y tipos de fallos}
 
@@ -18,7 +18,7 @@
   \item \textbf{Recursos:} se agota la CPU, la memoria, el disco o la red.
 \end{itemize}
 
-\textbf{Enlace con la siguiente diapositiva.} Ante estos fallos, necesitamos saber qué trabajador dejó de responder y cómo recuperar sus tareas. Después trasladaremos las lecciones de continuidad al escenario de SGRA en el que Groq Cloud no responde a tiempo.
+\textbf{Enlace con la siguiente diapositiva.} Ante estos fallos, necesitamos saber qué trabajador dejó de responder y cómo recuperar sus tareas. Después aplicaremos esa idea a la comprobación de horarios para programar un refuerzo en SGRA.
 
 \subsection*{Diapositiva 11 — Detección y recuperación ante fallos}
 
@@ -28,7 +28,7 @@ Los \emph{heartbeats} indican que los trabajadores siguen activos; un \emph{time
 Los \emph{watchdogs} vigilan señales esperadas dentro de un plazo; pueden servir para supervisar la ejecución si esas señales se vinculan a su avance.~\cite{asch2025}
 
 Para recuperar el trabajo paralelo, la replicación aporta copias, la reasignación pasa tareas pendientes a otro trabajador y el \emph{checkpoint} permite retomar un estado guardado, evitando repetir todo el cálculo.~\cite{mushtaq2024}
-Así buscamos completar el trabajo pese al fallo de una parte. En SGRA aplicaremos la lección de continuidad al respaldo Java, sin confundir ese respaldo con ejecución paralela.
+Así buscamos completar el trabajo pese al fallo de una parte. En la práctica aplicada a SGRA veremos cómo se recupera una sola comprobación de horario sin repetir las demás.
 
 \textbf{Apoyo para preguntas.}
 Un heartbeat confirma actividad, pero no necesariamente avance útil: un proceso puede seguir enviándolo aunque una tarea esté bloqueada. Para vigilar progreso deben definirse señales o métricas relacionadas con el trabajo realizado.
@@ -37,34 +37,21 @@ Un checkpoint debe guardar el estado necesario para reanudar; cuando hay depende
 Un timeout demasiado corto puede generar falsas sospechas; uno demasiado largo demora la reacción.
 La redundancia es disponer de elementos adicionales, mientras que la replicación es una forma de redundancia basada en copias.
 Reiniciar desde un checkpoint no significa lo mismo que reintentar una petición: aquí se explica recuperación de estado, no una política de reintentos con backoff.
-El respaldo local de SGRA se describe en el documento interno \textit{SGRA: descripción técnica y funcional}; no se atribuye a las fuentes bibliográficas ni se presupone que tenga las mismas capacidades que Groq.
-Groq $\rightarrow$ validador Java es una alternativa activada ante un fallo, no evidencia por sí sola de computación paralela. Las diapositivas 10 y 11 explican los mecanismos generales y su aplicación al trabajo paralelo; SGRA ilustra cómo trasladar la lección de continuidad a la PFC.
 
 \subsection*{Diapositiva 12 — SGRA: lecciones para la PFC y conclusiones}
 
 \textbf{Guion sugerido (aproximadamente 1 minuto).}
-En nuestra PFC, SGRA, el documento técnico describe un respaldo: si Groq Cloud falla o no responde, interviene un validador Java local.
-Lo presentamos como un escenario previsto, no como un incidente ya comprobado.
-La falta de respuesta es un síntoma; sin registros ni pruebas no podemos confirmar la causa raíz.
+En SGRA, el estudiante solicita un refuerzo y el docente puede programarlo. Aplicamos computación paralela a una decisión de ese flujo: elegir una franja sin cruces para el refuerzo virtual. La búsqueda la hace un programa Java externo, no el backend de SGRA.
 
-Las lecciones que proponemos aplicar son definir límites de espera, probar que se activa el respaldo y registrar errores y tiempos para investigar el problema.
-El validador no sustituye todas las capacidades de la IA: conserva una función de validación, no demuestra paralelismo.
+Comparamos las mismas cuatro franjas con uno y con cuatro trabajadores. Los resultados coincidieron y en la ejecución paralela las comprobaciones se solaparon. Luego provocamos un fallo en una franja: solo se reintentó esa comprobación, sin repetir las otras. Si vuelve a fallar, la franja queda sin comprobar; no la damos por libre.
 
-La conclusión para la computación paralela distribuida es que repartir el trabajo no basta: también hay que recuperar las tareas de los trabajadores que fallan para completar el resultado conjunto.~\cite{assiri2025,mushtaq2024}
-SGRA permite trasladar esa lección de continuidad a nuestra PFC, aunque su respaldo sea un mecanismo distinto.
+La lección para la PFC es que podemos recuperar la parte que falla sin perder el trabajo ya completado.~\cite{assiri2025,mushtaq2024} La franja verificada sirve para programar la sesión en SGRA; la aceptación se hace una sola vez.
 
-\textbf{Fuente del escenario.}
-El documento interno \textit{SGRA: descripción técnica y funcional}, sección 4, apartado «Integraciones externas», describe Groq Cloud y el validador Java de respaldo.
-Se menciona como contexto del proyecto y no se incorpora a la bibliografía académica.
-No hemos realizado todavía la prueba controlada ni verificado código o registros que demuestren la activación del respaldo.
+\textbf{Apoyo para preguntas: resultados.}
+Con los horarios de prueba, F1 cruza un evento del estudiante, F2 cruza uno del docente y F3 y F4 están libres. Al reintentar F3 se recuperó el resultado «libre»; al reintentar F2 se recuperó el resultado «cruce con el docente». Cuando el fallo de F3 fue persistente, quedó sin comprobar y F4 pasó a ser la primera franja libre verificada.
 
-\textbf{Apoyo para preguntas: síntoma, causa y recuperación.}
-Una ausencia de respuesta puede deberse a problemas de comunicación, indisponibilidad del proveedor u otras condiciones; son hipótesis, no causas confirmadas.
-La dependencia de un servicio externo es una condición arquitectónica de riesgo, no la causa raíz demostrada de un incidente.
-Para distinguir las hipótesis se necesitarían registros del error, tiempos de la solicitud y evidencia del comportamiento del proveedor y del backend.
-El paso al validador Java es una alternativa funcional de respaldo, no una réplica de Groq ni una ejecución simultánea de ambos.
+\textbf{Apoyo para preguntas: causa y alcance.}
+La causa del fallo de prueba es conocida porque se inyectó en el programa Java; no fue una caída del backend, de un nodo ni de Groq. El mismo hilo u otro puede tomar el reintento. El cálculo usa una copia local de los horarios y no reintenta escrituras: no garantiza que las agendas no cambien antes de aceptar.
 
-\textbf{Alcance de las lecciones propuestas.}
-Definir límites de espera, probar la activación del respaldo y registrar su uso son recomendaciones para la PFC, no funcionalidades cuya implementación hayamos comprobado.
-La prueba práctica y sus evidencias se prepararán después; no se atribuyen resultados ni tiempos de recuperación todavía.
-El ejemplo de trabajadores paralelos de las notas anteriores es didáctico y no implica que SGRA ejecute ese flujo.
+\textbf{Cómo leer la evidencia.}
+La tabla registra inicios, fines y CPU por hilo. Si el tiempo de CPU acumulado supera la ventana que contiene todas las tareas, hubo uso simultáneo de más de un núcleo lógico durante parte de la prueba. Eso demuestra paralelismo local, no una mejora de rendimiento medida en SGRA. El respaldo Groq $\rightarrow$ Java descrito en el documento interno es un mecanismo distinto y no forma parte de esta prueba.

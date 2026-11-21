@@ -86,3 +86,20 @@
 - Solución: se presentó el caso como escenario previsto y se indicó que la causa raíz está por determinar. Las notas distinguen el síntoma de las posibles causas, aclaran que el validador Java no es una réplica de Groq ni demuestra paralelismo y conectan la conclusión con la recuperación de tareas en computación paralela distribuida. La prueba práctica y sus evidencias quedaron para una etapa posterior.
 
 - Tiempo dedicado: 1 hora y media.
+
+## Sesión 6: 21 de noviembre de 2026
+
+- Integrantes presentes: Bryan Humberto Lombeida Escaleras.
+
+- Actividades realizadas:
+  - Implementación de una práctica en Java para comprobar cuatro franjas de un refuerzo académico, usando uno y cuatro trabajadores con la misma agenda de prueba.
+  - Ejecución de diez comprobaciones automáticas y pruebas de recuperación: reintento exitoso de una franja libre (F3), reintento exitoso de una franja ocupada (F2) y fallo persistente de F3.
+  - Verificación de que el frontend y el backend de SGRA se comunican en el entorno local mediante una consulta HTTP sin sesión.
+  - Documentación de los comandos, resultados, alcance y evidencias en el README de `evidencias/Bryan Humberto Lombeida Escaleras/Practica/`.
+  - Actualización de la diapositiva 12 y su guion para explicar la aplicación al flujo estudiante–docente. Compilación de `diapositivas_general.pdf` y `notas_general.pdf`, con los auxiliares fuera del repositorio.
+
+- Problema encontrado: una comprobación sin resultado podía confundirse con una franja libre. Además, era necesario distinguir el cálculo paralelo de la práctica de la programación de refuerzos que realiza SGRA.
+
+- Solución: se reintenta únicamente la comprobación fallida y se conservan las demás. Si el segundo intento falla, la franja queda sin comprobar. El material de exposición separa el cálculo local en Java de la aceptación de la solicitud en SGRA.
+
+- Tiempo dedicado: 1 hora y media.

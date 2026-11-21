@@ -57,36 +57,34 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\renewcommand{\fuentespie}{Fuentes: \cite{assiri2025,mushtaq2024}; doc. SGRA}
+\renewcommand{\fuentespie}{Fuentes: \cite{assiri2025,mushtaq2024}; práctica propia}
 \begin{frame}[t]{SGRA: lecciones para la PFC y conclusiones}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.46\textwidth}
-      \begin{block}{Escenario previsto en SGRA}
+      \begin{block}{Aplicación a SGRA}
         \small
-        Groq Cloud falla o no responde\\
-        $\downarrow$\\
-        Validador Java local de respaldo
-
-        \medskip
-        \textbf{Causa raíz:} por determinar.
+        \begin{itemize}
+          \item \textbf{Estudiante:} solicita refuerzo.
+          \item \textbf{Java:} comprueba cuatro franjas.
+          \item \textbf{Docente:} programa una franja libre.
+        \end{itemize}
       \end{block}
-      {\scriptsize Documento interno: \textit{SGRA: descripción técnica y funcional}, sección 4.\par}
     \end{column}
 
     \begin{column}{0.50\textwidth}
-      \begin{block}{Lecciones para la PFC}
+      \begin{block}{Resultados de la práctica}
         \small
         \begin{itemize}
-          \item \textbf{Espera:} definir límites.
-          \item \textbf{Respaldo:} probar su activación.
-          \item \textbf{Diagnóstico:} registrar errores y tiempos.
+          \item \textbf{Paralelismo:} uno frente a cuatro trabajadores.
+          \item \textbf{Fallo simulado:} reintento de una franja.
+          \item \textbf{Fallo persistente:} franja sin comprobar.
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
   \vspace{1em}
   \begin{beamercolorbox}[wd=\textwidth,sep=0.8em]{block body}
-    \small\textbf{Conclusión:} el trabajo paralelo necesita recuperar las tareas que fallan.~\cite{assiri2025,mushtaq2024}
+    \small\textbf{Conclusión:} recuperar solo la tarea fallida evita repetir el trabajo ya completado.~\cite{assiri2025,mushtaq2024}
   \end{beamercolorbox}
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
