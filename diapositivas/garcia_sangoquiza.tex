@@ -1,4 +1,4 @@
-% GARCIA SANGOQUIZA — CAP y PACELC; comparación pendiente.
+% GARCIA SANGOQUIZA — CAP, PACELC y comparación crítica.
 \renewcommand{\fuentespie}{Fuentes: \cite{gsGilbertLynch2002,gsClabE1}}
 \begin{frame}{CAP: coordinar datos al ejecutar en paralelo}
   \small
@@ -51,6 +51,26 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\begin{frame}{Comparación de sistemas de cómputo paralelo}
-  [PENDIENTE: contenido verificado y cita]\par
+\renewcommand{\fuentespie}{Fuentes: \cite{gsPg18Replication,gsPg18Ranges}}
+\begin{frame}{CLAB: repartir lecturas, coordinar reservas}
+  \small
+  \textbf{Dos enfoques con PostgreSQL; misma regla de no solapamiento.}
+  \medskip
+  \begin{tabular}{@{}p{0.16\textwidth}p{0.38\textwidth}p{0.38\textwidth}@{}}
+    \toprule
+    & \textbf{Solo primario} & \textbf{Primario + réplicas asíncronas} \\
+    \midrule
+    Ventaja & Sin retraso de réplica al leer & Reparte las consultas de lectura \\
+    Coste & Concentra carga y acceso & Posible dato antiguo; supervisión \\
+    Reservar & Confirmación transaccional & También se confirma en el primario \\
+    \bottomrule
+  \end{tabular}
+  \medskip
+  \begin{block}{Postura propuesta para CLAB}
+    Confirmar atómicamente en el primario, impidiendo solapamientos.\par
+    Añadir réplicas solo si la carga lo justifica: \textbf{consultar no es reservar}.
+  \end{block}
+  {\scriptsize Comparación de diseño, no medición ni implementación en la base
+  E1. Fuentes: \cite{gsPg18Replication,gsPg18Ranges}.}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
