@@ -11,14 +11,15 @@ La transparencia de \textbf{acceso} significa que los recursos locales y
 remotos se usan con las mismas operaciones. Esto permite, por ejemplo, ejecutar
 en la nube una aplicación paralela pensada para una sola máquina sin
 modificarla \cite{hbArjona2023}. La de \textbf{ubicación} oculta dónde se
-encuentra el recurso. Cuando los datos se replican en varios sitios, la
+encuentra el recurso: por ejemplo, el servidor de desarrollo de Angular puede
+desviar las rutas como \texttt{/api} hacia un servidor backend, de modo que la
+aplicación pide la ruta sin conocer la dirección del servidor
+\cite{hbAngularProxy}. Cuando los datos se replican en varios sitios, la
 \textbf{replicación} acerca los datos al usuario y aporta tolerancia a fallos;
 y como varias réplicas se actualizan al mismo tiempo, el sistema debe hacer
 que converjan a una vista consistente, lo que corresponde a la
 \textbf{concurrencia} \cite{hbFreitas2025}. La transparencia de
 \textbf{fallos} se apoya en esas réplicas para que el servicio continúe.
-
-% PENDIENTE: fuente para transparencia de ubicación; ejemplo del PFC (SSDC).
 
 \subsection*{Comunicación que coordina tareas}
 Para que varios nodos trabajen en paralelo deben coordinarse intercambiando
@@ -26,17 +27,19 @@ mensajes. En el modelo \textbf{cliente-servidor}, los servicios exponen
 interfaces REST u otros mecanismos de solicitud y respuesta
 \cite{hbSimoes2026}. En el modelo \textbf{peer-to-peer}, los participantes
 interactúan directamente, sin un intermediario central \cite{hbSaleh2025}. El
-modelo \textbf{híbrido} combina un coordinador central con nodos que se
-comunican entre sí.
+modelo \textbf{híbrido} combina ambos: en BitTorrent, un servidor central
+llamado \emph{tracker} entrega a cada participante la lista de los demás, y
+después los participantes intercambian las partes del archivo directamente
+entre ellos \cite{hbBep3}.
 
-Los mecanismos van del más bajo al más alto nivel. Los \textbf{sockets}
-transmiten bytes por canales TCP o UDP. La \textbf{RPC}, por ejemplo con gRPC,
+Los mecanismos van del más bajo al más alto nivel. Un \textbf{socket} es un
+extremo de un enlace de comunicación bidireccional entre dos programas que se
+ejecutan en la red; en las aplicaciones cliente-servidor, TCP ofrece sobre
+ellos un canal confiable punto a punto \cite{hbOracleSockets}. La \textbf{RPC}, por ejemplo con gRPC,
 permite invocar un procedimiento en otro servicio \cite{hbSimoes2026}. La
 \textbf{mensajería} usa un intermediario cuyas colas guardan temporalmente los
 mensajes; el modelo publicación/suscripción desacopla la entrega de mensajes
 de quienes los envían y los reciben \cite{hbSaleh2025}.
-
-% PENDIENTE: fuente para híbrido y sockets; ejemplo del SSDC.
 
 \subsection*{Espera y avance de tareas}
 En la comunicación \textbf{sincrónica}, quien envía la solicitud espera la
@@ -52,4 +55,30 @@ de forma sincrónica a las demás, el trabajo avanzaría en serie; con
 comunicación asincrónica, una tarea puede seguir avanzando mientras otra
 espera una respuesta.
 
-% PENDIENTE: ejemplo del SSDC.
+\subsubsection*{Aplicación al PFC: notificación de resultados en el SSDC}
+En nuestro PFC, el SSDC, esto ocurre cuando el comité registra su decisión
+sobre una solicitud docente. El controlador llama a
+\texttt{enviarCorreosDecision}, un método marcado con \texttt{@Async}, y
+responde al comité sin esperar los correos. Ese método recorre a los
+postulantes y llama, para cada uno, a \texttt{enviarResultadoSeleccion},
+que también es \texttt{@Async}. Spring reparte esos envíos entre los hilos
+de su grupo de tareas, que por defecto tiene ocho, así que varios correos se
+envían a la vez.
+
+Para observarlo, preparé una práctica en Java que reproduce este flujo con
+16 postulantes ficticios y un tiempo de correo simulado de 500 ms. Con un
+solo hilo, los correos salen uno tras otro y el tiempo total fue de
+8064 ms en promedio; con ocho hilos, como en el SSDC, bajó a
+1035,5 ms, una aceleración de 7,79 veces. Al duplicar los postulantes a 32,
+con un hilo el tiempo también se duplicó, mientras que con ocho hilos
+subió solo a unos 2 segundos. Los hilos pasan casi todo
+ese tiempo esperando al servidor de correo, por lo que lo que se superpone
+son las esperas, no el cálculo; la práctica no mide la velocidad real del
+SSDC.
+
+En la práctica, el correo del postulante 5 falla a propósito. Los otros 15
+se entregan y el comité no se entera del fallo en su respuesta: el error
+queda en el hilo del correo. En el código del SSDC pasa lo mismo, porque el
+\texttt{try/catch} del bucle no puede atrapar un error que ocurre en otro
+hilo. Es el costo de no esperar: la asincronía oculta el fallo a quien hizo
+la solicitud.
