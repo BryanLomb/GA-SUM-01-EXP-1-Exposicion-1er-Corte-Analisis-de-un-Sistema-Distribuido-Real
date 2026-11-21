@@ -21,12 +21,28 @@ Laboratorios desde Reservas por HTTP; todavía no tiene reservas ni
 persistencia~\cite{gsClabE1}. Dos servicios no demuestran paralelismo ni permiten
 clasificar automáticamente todo CLAB como CP.
 
-\subsection*{PACELC y comparación crítica}
-[PENDIENTE: desarrollar PACELC y contrastar dos enfoques tecnológicos;
-ajustar el guion completo a tres minutos mediante ensayo.]
+\subsection*{PACELC: consistencia frente a latencia (unos 45 s)}
+PACELC complementa CAP: con partición, disponibilidad frente a consistencia;
+sin partición, latencia frente a consistencia en datos
+replicados~\cite{gsAbadi2012}.
+Latencia es cuánto tarda una operación en responder. Por ejemplo, leer un precio
+en una réplica cercana puede reducir la espera, pero devolver un valor antiguo.
+Garantizar una lectura actualizada puede exigir comunicación adicional.
+
+Para CLAB propongo consultas paralelas de disponibilidad sobre réplicas:
+servirían como orientación, no como confirmación. Aunque una consulta muestre
+libre un laboratorio, la reserva debe validarse y confirmarse de forma atómica
+en el servicio autorizado. Son decisiones propuestas por operación, no una
+etiqueta PACELC del CLAB actual. Paralelizar consultas no elimina el coste de
+coordinarlas~\cite{gsAbadi2012,gsMicrosoftConsistency2025}.
+
+\subsection*{Comparación crítica (1 min)}
+[PENDIENTE: contrastar dos enfoques tecnológicos y ajustar el guion completo
+a tres minutos mediante ensayo.]
 
 \paragraph{Declaración de uso de IA de esta sección.}
-Se utilizó OpenAI GPT-6.1 Sol para preparar este borrador de diapositiva y notas,
-consultar fuentes y revisar su correspondencia con el código de CLAB.
+Se utilizó OpenAI GPT-6.1 Sol para preparar este borrador de diapositivas y notas
+de CAP y PACELC, consultar fuentes y revisar su correspondencia con el código
+de CLAB.
 La revisión personal, la adaptación del guion y el ensayo del expositor están
 pendientes. Los ejemplos son ilustrativos, no resultados experimentales.
