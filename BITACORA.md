@@ -135,3 +135,22 @@
 - Problema encontrado: el guion grupal superaba el límite de páginas y faltaba registrar el aporte y el uso de IA.
 - Solución: se condensó su sección y se documentaron ambos aportes en las notas generales. El ajuste restante de extensión corresponde a la revisión del documento grupal.
 - Tiempo dedicado: 1 hora.
+
+
+## Sesión 9: 21 de noviembre de 2026
+
+- Integrantes presentes: Aldair Herrera Barco.
+
+- Actividades realizadas:
+  - Análisis del código del SSDC para identificar un uso real de computación paralela: la notificación de resultados del comité mediante `enviarCorreosDecision` y `enviarResultadoSeleccion`, ambos marcados con `@Async`.
+  - Implementación y ejecución de una práctica en Java (`NotificacionComite.java`) que compara el envío de correos con 1 hilo y con 8 hilos para 16 y 32 postulantes ficticios, incluido un correo que falla a propósito.
+  - Documentación de la práctica en `evidencias/Aldair Herrera Barco/` (`comandos.md`, `experimento.md`, `resultados.md` y siete capturas).
+  - Elaboración del diagrama `figuras/notificacion_ssdc.tex` en TikZ y actualización de la diapositiva «Espera y avance de tareas» con la tabla de resultados.
+  - Incorporación de documentación oficial (Oracle, Angular y BitTorrent) para respaldar sockets, transparencia de ubicación y el modelo híbrido; retiro de la referencia de 2016.
+  - Actualización del guion en `notas/herrera_barco.tex` con las citas y la aplicación al SSDC.
+
+- Problema encontrado: el SSDC no puede ejecutarse fuera del equipo de desarrollo sin sus credenciales de base de datos y correo, y un envío real de correos haría variar los tiempos. Además, la aceleración obtenida podía confundirse con uso de CPU.
+
+- Solución: se reprodujo el flujo en un programa independiente con un tiempo de correo simulado. En las notas y en `resultados.md` se aclara que los hilos superponen esperas de comunicación y que la práctica no mide la velocidad real del SSDC.
+
+- Tiempo dedicado: 3 horas.
