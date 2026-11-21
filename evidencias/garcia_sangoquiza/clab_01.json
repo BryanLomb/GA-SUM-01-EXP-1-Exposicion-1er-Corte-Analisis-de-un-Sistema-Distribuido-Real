@@ -1,0 +1,101 @@
+{
+  "tipo": "modelo_didactico_local",
+  "datos": "sinteticos; no proceden de CLAB",
+  "metadatos": {
+    "fecha": "2026-11-21T15:59:42.474489-05:00",
+    "usuario": "roger",
+    "equipo": "omarchy",
+    "python": "3.14.8",
+    "plataforma": "Linux-7.2.15-1-omarchy-x86_64-with-glibc2.44",
+    "codigo_sha256": "2f3fc488a6f136b6405f7e11df5e2f459618bf8f65accf1334e76155fe96829d",
+    "trabajo_cpu_artificial_ms": 150,
+    "retardo_consulta_artificial_ms": 80
+  },
+  "casos": {
+    "clab": {
+      "trabajadores": [
+        {
+          "nodo": "A",
+          "pid": 47335,
+          "ve_disponible": true,
+          "solicitud": {
+            "docente": "Docente A",
+            "laboratorio": "LAB-01",
+            "inicio": 540,
+            "fin": 600
+          },
+          "stock_local_final": null,
+          "inicio_ns": 8520984669803,
+          "fin_ns": 8521134965531,
+          "cpu_ns": 150029816,
+          "checksum": 461228033
+        },
+        {
+          "nodo": "B",
+          "pid": 47336,
+          "ve_disponible": true,
+          "solicitud": {
+            "docente": "Docente B",
+            "laboratorio": "LAB-01",
+            "inicio": 540,
+            "fin": 600
+          },
+          "stock_local_final": null,
+          "inicio_ns": 8520984632146,
+          "fin_ns": 8521134945621,
+          "cpu_ns": 150034396,
+          "checksum": 3208928257
+        }
+      ],
+      "ejecucion": {
+        "pids": [
+          47335,
+          47336
+        ],
+        "intervalos_solapados": true,
+        "ventana_ms": 150.333385,
+        "cpu_acumulada_ms": 300.064212,
+        "cpu_sobre_ventana": 1.9959918550360587,
+        "evidencia_mas_de_una_cpu_logica": true,
+        "umbral_conservador": 1.05
+      },
+      "modelo": {
+        "lecturas_iniciales_libre": 2,
+        "sin_particion": {
+          "A": "CONFIRMADA",
+          "B": "RECHAZADA_POR_CRUCE"
+        },
+        "reservas_confirmadas": [
+          {
+            "docente": "Docente A",
+            "laboratorio": "LAB-01",
+            "inicio": 540,
+            "fin": 600
+          }
+        ],
+        "con_particion_modelada": {
+          "A": "CONFIRMADA",
+          "B": "SIN_CONFIRMAR"
+        },
+        "replica_atrasada": {
+          "version": 0,
+          "disponible": true,
+          "elapsed_ms": 0.000789,
+          "retardo_introducido_ms": 0
+        },
+        "lectura_autoridad": {
+          "version": 1,
+          "disponible": false,
+          "elapsed_ms": 80.120736,
+          "retardo_introducido_ms": 80
+        },
+        "replica_actualizada": {
+          "version": 1,
+          "disponible": false,
+          "elapsed_ms": 0.009348,
+          "retardo_introducido_ms": 0
+        }
+      }
+    }
+  }
+}

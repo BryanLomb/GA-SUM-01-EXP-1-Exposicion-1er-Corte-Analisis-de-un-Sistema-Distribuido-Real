@@ -1,6 +1,6 @@
 % GARCIA SANGOQUIZA — CAP, PACELC y comparación crítica.
 \renewcommand{\fuentespie}{Fuentes: \cite{gsGilbertLynch2002,gsClabE1}}
-\begin{frame}{CAP: coordinar datos al ejecutar en paralelo}
+\begin{frame}[label=gs-cap]{CAP: coordinar datos al ejecutar en paralelo}
   \small
   \textbf{Con una partición de red no se garantizan C y A a la vez.}
   \begin{description}
@@ -16,13 +16,13 @@
     \textbf{Propuesta:} sin coordinación, el nodo aislado no confirma
     la reserva. Se prioriza C sobre A para esa operación.
   \end{block}
-  {\scriptsize Escenarios ilustrativos; CLAB actual no implementa reservas
-  ni réplicas. Fuentes: \cite{gsGilbertLynch2002,gsClabE1}.}
+  {\scriptsize Ejemplo ejecutado como modelo local, no como backend CLAB.
+  \hyperlink{gs-evidencia-general}{\beamergotobutton{Ver ejecución general}}}
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
 \renewcommand{\fuentespie}{Fuentes: \cite{gsAbadi2012,gsMicrosoftConsistency2025}}
-\begin{frame}{PACELC: coordinar también cuesta sin fallos}
+\begin{frame}[label=gs-pacelc]{PACELC: coordinar también cuesta sin fallos}
   \small
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.48\textwidth}
@@ -46,8 +46,8 @@
     Consultar réplicas orienta; \textbf{no confirma una reserva}.\par
     La confirmación requiere validación y registro atómicos coordinados.
   \end{block}
-  {\scriptsize Datos replicados hipotéticos; no implementados ni medidos en
-  CLAB. Fuentes: \cite{gsAbadi2012,gsMicrosoftConsistency2025}.}
+  {\scriptsize Retardo impuesto en un modelo local; no es latencia de CLAB.
+  \hyperlink{gs-evidencia-clab}{\beamergotobutton{Ver ejecución CLAB}}}
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 

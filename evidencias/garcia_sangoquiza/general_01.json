@@ -1,0 +1,64 @@
+{
+  "tipo": "modelo_didactico_local",
+  "datos": "sinteticos; no proceden de CLAB",
+  "metadatos": {
+    "fecha": "2026-11-21T15:56:55.566608-05:00",
+    "usuario": "roger",
+    "equipo": "omarchy",
+    "python": "3.14.8",
+    "plataforma": "Linux-7.2.15-1-omarchy-x86_64-with-glibc2.44",
+    "codigo_sha256": "2f3fc488a6f136b6405f7e11df5e2f459618bf8f65accf1334e76155fe96829d",
+    "trabajo_cpu_artificial_ms": 150,
+    "retardo_consulta_artificial_ms": 80
+  },
+  "casos": {
+    "general": {
+      "trabajadores": [
+        {
+          "nodo": "A",
+          "pid": 45396,
+          "ve_disponible": true,
+          "solicitud": null,
+          "stock_local_final": 0,
+          "inicio_ns": 8354079832331,
+          "fin_ns": 8354230220170,
+          "cpu_ns": 150048815,
+          "checksum": 2716046337
+        },
+        {
+          "nodo": "B",
+          "pid": 45397,
+          "ve_disponible": true,
+          "solicitud": null,
+          "stock_local_final": 0,
+          "inicio_ns": 8354079861796,
+          "fin_ns": 8354230481680,
+          "cpu_ns": 150072428,
+          "checksum": 494355457
+        }
+      ],
+      "ejecucion": {
+        "pids": [
+          45396,
+          45397
+        ],
+        "intervalos_solapados": true,
+        "ventana_ms": 150.649349,
+        "cpu_acumulada_ms": 300.121243,
+        "cpu_sobre_ventana": 1.9921841348282228,
+        "evidencia_mas_de_una_cpu_logica": true,
+        "umbral_conservador": 1.05
+      },
+      "modelo": {
+        "stock_inicial_global": 1,
+        "ventas_locales_sin_coordinar": 2,
+        "sobreventa": true,
+        "politica_coordinada": {
+          "A": "CONFIRMADA",
+          "B": "SIN_CONFIRMAR"
+        },
+        "stock_final_coordinado": 0
+      }
+    }
+  }
+}
