@@ -48,7 +48,7 @@ public class NotificacionComite {
         AtomicInteger numero = new AtomicInteger(1);
         ExecutorService grupo = Executors.newFixedThreadPool(hilos, r -> {
             Thread t = new Thread(r);
-            t.setName("task-" + numero.getAndIncrement());   // nombre de los hilos @Async de Spring
+            t.setName("task-" + numero.getAndIncrement());
             return t;
         });
 
@@ -58,7 +58,7 @@ public class NotificacionComite {
             int id = i;
             envios.add(grupo.submit(() -> enviarResultado(id, msCorreo, inicio)));
         }
-        // El comite ya recibio su respuesta: el envio sigue en segundo plano.
+        
         System.out.printf("[%5d ms] [main  ] comite: respuesta 200 OK (los correos siguen en otros hilos)%n",
                 System.currentTimeMillis() - inicio);
 
@@ -80,7 +80,7 @@ public class NotificacionComite {
     private static void enviarResultado(int id, long msCorreo, long inicio) {
         String hilo = Thread.currentThread().getName();
         try {
-            Thread.sleep(msCorreo);                          // simula la espera del servidor SMTP
+            Thread.sleep(msCorreo);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
