@@ -37,12 +37,24 @@ etiqueta PACELC del CLAB actual. Paralelizar consultas no elimina el coste de
 coordinarlas~\cite{gsAbadi2012,gsMicrosoftConsistency2025}.
 
 \subsection*{Comparación crítica (1 min)}
-[PENDIENTE: contrastar dos enfoques tecnológicos y ajustar el guion completo
-a tres minutos mediante ensayo.]
+Comparo dos enfoques: concentrar consultas y escrituras en el primario
+PostgreSQL, o repartir lecturas entre réplicas asíncronas manteniendo las
+escrituras en el primario. El primero evita el retraso de réplica en las
+consultas, pero concentra carga y puede exigir viajes de red más largos.
+El segundo descarga lecturas, aunque puede mostrar datos antiguos y requiere
+vigilar la replicación~\cite{gsPg18Replication}.
+
+Para CLAB elegiría el primario para aceptar reservas y añadiría réplicas solo
+si las mediciones justifican su coste. Consultar que un laboratorio está libre
+no basta: propongo validar y registrar atómicamente, con una restricción que
+impida intervalos solapados del mismo laboratorio~\cite{gsPg18Ranges}.
+Las réplicas servirían para orientación, no para confirmar. No son tecnologías
+universalmente mejores: la decisión depende de la operación. Esta comparación
+es de diseño, no un experimento ni una clasificación CP/AP de todo PostgreSQL.
 
 \paragraph{Declaración de uso de IA de esta sección.}
 Se utilizó OpenAI GPT-6.1 Sol para preparar este borrador de diapositivas y notas
-de CAP y PACELC, consultar fuentes y revisar su correspondencia con el código
-de CLAB.
+de CAP, PACELC y comparación crítica, consultar fuentes y revisar su
+correspondencia con el código de CLAB.
 La revisión personal, la adaptación del guion y el ensayo del expositor están
 pendientes. Los ejemplos son ilustrativos, no resultados experimentales.
