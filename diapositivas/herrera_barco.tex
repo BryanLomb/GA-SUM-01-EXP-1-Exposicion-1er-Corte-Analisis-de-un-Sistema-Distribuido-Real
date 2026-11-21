@@ -1,27 +1,27 @@
 % HERRERA BARCO — Transparencias y modelos de comunicación
-\renewcommand{\fuentespie}{Fuentes: \cite{hbVanSteen2016}}
+\renewcommand{\fuentespie}{Fuentes: \cite{hbFreitas2025,hbArjona2023}}
 \begin{frame}{Transparencias durante el trabajo paralelo}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.44\textwidth}
       \begin{block}{Transparencia}
-        Ocultar que procesos y recursos están repartidos en varios nodos.~\cite{hbVanSteen2016}
+        Varios nodos se coordinan por mensajes, pero el usuario ve una sola unidad.~\cite{hbFreitas2025}
       \end{block}
 
       \vspace{0.8em}
       {\small
-      Varios nodos trabajan en paralelo\\
-      $\downarrow$ el usuario ve \textbf{un solo sistema}\par}
+      Procesos paralelos en la nube\\
+      $\downarrow$ se usan como si fueran \textbf{locales}~\cite{hbArjona2023}\par}
     \end{column}
 
     \begin{column}{0.52\textwidth}
       \begin{block}{Qué se oculta}
         \small
         \begin{itemize}
-          \item \textbf{Acceso:} cómo se accede al recurso.
+          \item \textbf{Acceso:} misma operación local o remota.~\cite{hbArjona2023}
           \item \textbf{Ubicación:} dónde está el recurso.
-          \item \textbf{Concurrencia:} que otros lo usan a la vez.
-          \item \textbf{Replicación:} que existen varias copias.
-          \item \textbf{Fallos:} la falla y recuperación de un nodo.~\cite{hbVanSteen2016}
+          \item \textbf{Concurrencia:} actualizaciones simultáneas.~\cite{hbFreitas2025}
+          \item \textbf{Replicación:} copias en varios sitios.~\cite{hbFreitas2025}
+          \item \textbf{Fallos:} las réplicas mantienen el servicio.~\cite{hbFreitas2025}
         \end{itemize}
       \end{block}
     \end{column}
@@ -29,18 +29,58 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
+\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026,hbSaleh2025}}
 \begin{frame}{Comunicación que coordina tareas}
-  \begin{itemize}
-    \item Modelos: cliente-servidor, peer-to-peer e híbrido
-    \item Mecanismos: sockets, RPC y mensajería
-    \item Ejemplo PFC: [PENDIENTE]
-  \end{itemize}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Modelos}
+        \small
+        \begin{itemize}
+          \item \textbf{Cliente-servidor:} solicitud y respuesta.~\cite{hbSimoes2026}
+          \item \textbf{Peer-to-peer:} los nodos interactúan directamente.~\cite{hbSaleh2025}
+          \item \textbf{Híbrido:} un coordinador central y nodos iguales.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Mecanismos}
+        \small
+        \begin{itemize}
+          \item \textbf{Sockets:} canal TCP o UDP entre procesos.
+          \item \textbf{RPC:} invocar un procedimiento remoto (gRPC).~\cite{hbSimoes2026}
+          \item \textbf{Mensajería:} colas que guardan mensajes y desacoplan emisor y receptor.~\cite{hbSaleh2025}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
+\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026,hbSaleh2025}}
 \begin{frame}{Espera y avance de tareas}
-  \begin{itemize}
-    \item Comunicación sincrónica vs.\ asincrónica
-    \item Relación con la computación paralela
-    \item Ejemplo PFC: [PENDIENTE]
-  \end{itemize}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Sincrónica}
+        \small
+        \begin{itemize}
+          \item El emisor \textbf{espera} la respuesta.
+          \item Ejemplos: REST y gRPC.~\cite{hbSimoes2026}
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Asincrónica}
+        \small
+        \begin{itemize}
+          \item No se espera respuesta inmediata.~\cite{hbSimoes2026}
+          \item Ejemplos: MQTT y pub/sub.~\cite{hbSimoes2026,hbSaleh2025}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.8em}
+  \centering
+  {\small En paralelo: la asincronía deja avanzar otras tareas mientras una espera.}
 \end{frame}
+\renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
