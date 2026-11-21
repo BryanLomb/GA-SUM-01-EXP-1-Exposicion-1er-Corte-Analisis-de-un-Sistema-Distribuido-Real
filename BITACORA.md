@@ -123,3 +123,15 @@
 - Alcance de los resultados: la CPU acumulada superó la ventana de ejecución en ambos casos, lo que aporta evidencia compatible con uso simultáneo de más de una CPU lógica para el trabajo artificial. No se atribuye aceleración ni latencia medida a CLAB, no se cortó la red y no se implementaron reservas o replicación en su backend.
 
 - Apoyo de IA: la preparación del modelo, sus pruebas y los materiales de explicación recibió asistencia de IA. Las capturas y los JSON corresponden a la ejecución personal registrada.
+
+## Sesión 8: 21 de noviembre de 2026
+
+- Integrantes presentes: Bryan Humberto Lombeida Escaleras.
+- Actividades realizadas:
+  - Revisión de la consigna de GA-SUM-02 / EXP-1 y del límite de 2 a 4 páginas para las notas.
+  - Resumen del guion de las diapositivas 10–12, conservando las citas, los mecanismos de tolerancia a fallos y el alcance de la práctica aplicada a SGRA.
+  - Incorporación de mi contribución a la tabla de aportes y de su declaración de uso de IA. Las contribuciones de los demás integrantes se dejaron para su confirmación.
+  - Regeneración de `notas_general.pdf` con `pdflatex → biber → pdflatex → pdflatex`. El documento pasó de 6 a 5 páginas, sin cambios en las diapositivas ni en las secciones de los compañeros.
+- Problema encontrado: el guion grupal superaba el límite de páginas y faltaba registrar el aporte y el uso de IA.
+- Solución: se condensó su sección y se documentaron ambos aportes en las notas generales. El ajuste restante de extensión corresponde a la revisión del documento grupal.
+- Tiempo dedicado: 1 hora.
