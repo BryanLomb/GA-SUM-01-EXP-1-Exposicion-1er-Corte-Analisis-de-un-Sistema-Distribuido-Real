@@ -1,40 +1,35 @@
 \section*{GARCIA SANGOQUIZA — CAP y PACELC (2 min) y comparación crítica (1 min)}
 
 \subsection*{CAP: ejemplo general y aplicación propuesta a CLAB (unos 75 s)}
-Ejecutar tareas en paralelo no elimina la necesidad de coordinar los datos
-compartidos. CAP estudia un límite de esa coordinación distribuida: durante
-una partición de red no podemos garantizar simultáneamente consistencia y
-disponibilidad~\cite{gsGilbertLynch2002,gsIbmCap}.
-C significa que las operaciones se comportan como sobre una única copia
-actualizada; A, que toda petición a un nodo operativo termina con una respuesta
-válida, no simplemente con un error; P contempla que los nodos pierdan comunicación.
+CAP señala que durante una partición no se garantizan simultáneamente C y A:
+C es operar como sobre una copia actualizada; A, completar cada petición a un
+nodo operativo con una respuesta válida, no un error; P contempla la pérdida
+de comunicación~\cite{gsGilbertLynch2002,gsIbmCap}.
 
-Imaginemos dos réplicas que venden la última unidad. Si quedan aisladas y ambas
-confirman la venta, pueden venderla dos veces. Para evitarlo, alguna debe dejar
-de confirmar mientras no pueda coordinarse.
+Ejecuté un modelo con dos procesos y stock inicial de una unidad. Sin
+coordinación, las dos copias aceptaron venderla: dos ventas para una unidad.
+La política coordinada confirmó A y dejó B sin confirmar al no alcanzar al
+decisor. Protege la regla global, pero limita disponibilidad.
 
-En CLAB, propongo el mismo razonamiento para dos nodos que intentan reservar
-el mismo laboratorio y horario: el nodo aislado no confirma una reserva sin
-coordinarla. Se prioriza consistencia sobre disponibilidad de esa operación.
-Es una propuesta, no una función implementada: la base E1 solo consulta
-Laboratorios desde Reservas por HTTP; todavía no tiene reservas ni
-persistencia~\cite{gsClabE1}. Dos servicios no demuestran paralelismo ni permiten
-clasificar automáticamente todo CLAB como CP.
+La captura del 21/11/2026 muestra 300,1 ms de CPU acumulada en una ventana de
+150,6 ms: evidencia compatible con uso simultáneo de más de una CPU lógica.
+Ese trabajo CPU es artificial; no mide rendimiento de CLAB. La partición está
+modelada, no se cortó la red ni se probó el teorema experimentalmente.
 
 \subsection*{PACELC: consistencia frente a latencia (unos 45 s)}
 PACELC complementa CAP: con partición, disponibilidad frente a consistencia;
 sin partición, latencia frente a consistencia en datos
 replicados~\cite{gsAbadi2012}.
-Latencia es cuánto tarda una operación en responder. Por ejemplo, leer un precio
-en una réplica cercana puede reducir la espera, pero devolver un valor antiguo.
-Garantizar una lectura actualizada puede exigir comunicación adicional.
+En el ejemplo CLAB, dos procesos consultaron LAB-01 de 09:00 a 10:00 y lo
+consideraron libre. El coordinador confirmó una reserva y rechazó la otra por
+cruce; si B no puede coordinar, queda sin confirmar.
 
-Para CLAB propongo consultas paralelas de disponibilidad sobre réplicas:
-servirían como orientación, no como confirmación. Aunque una consulta muestre
-libre un laboratorio, la reserva debe validarse y confirmarse de forma atómica
-en el servicio autorizado. Son decisiones propuestas por operación, no una
-etiqueta PACELC del CLAB actual. Paralelizar consultas no elimina el coste de
-coordinarlas~\cite{gsAbadi2012,gsMicrosoftConsistency2025}.
+Sin partición, la copia versión 0 mostró libre y la autoridad versión 1 mostró
+ocupado. La consulta coordinada tardó 80,121 ms, incluidos 80 ms impuestos por
+el programa: no es latencia de CLAB. Después se actualizó la copia.
+Consultar no confirma una reserva y la coordinación tiene un coste
+\cite{gsMicrosoftConsistency2025}. Es un modelo Python externo a la base E1,
+no replicación ni reservas implementadas en su backend~\cite{gsClabE1}.
 
 \subsection*{Comparación crítica (1 min)}
 Comparo dos enfoques: concentrar consultas y escrituras en el primario
