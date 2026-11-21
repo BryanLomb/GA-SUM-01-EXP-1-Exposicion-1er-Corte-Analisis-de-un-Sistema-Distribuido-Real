@@ -1,12 +1,51 @@
-% GIRALDO CAGUA — sustituir marcadores antes de la entrega
-\begin{frame}{Tema, sistema y escala}
-  [PENDIENTE: contenido verificado y cita]\par
+\begin{frame}{Computación paralela con Apache Spark}
+	\textbf{Dividir un trabajo en partes que puedan ejecutarse a la vez.}
+	El objetivo es reducir el tiempo total o procesar más datos en el mismo tiempo. \cite{girTraff2026}
+	
+	\medskip
+	\begin{tabular}{@{}ll@{}}
+		\toprule
+		Secuencial & Un vehículo después de otro.\\
+		Paralelo & Dos núcleos procesan grupos a la vez.\\
+		Distribuido & Varios equipos conectados se reparten los grupos.\\
+		\bottomrule
+	\end{tabular}
+	
+	\medskip
+	Spark procesa datos a gran escala para analítica y aprendizaje automático.
+	El proyecto reporta uso en el \textbf{80\,\% de las empresas Fortune 500}. \cite{girSparkHome}
 \end{frame}
 
-\begin{frame}{Arquitectura para ejecutar en paralelo}
-  [PENDIENTE: contenido verificado y cita]\par
+\begin{frame}{Cómo se coordina Spark en un clúster}
+	\centering
+	\input{figuras/arquitectura_spark.tex}
+	
+	\medskip
+	\small Un nodo es un equipo. Sus procesadores pueden tener varios núcleos.
+	Los ejecutores pueden correr varias tareas en distintos hilos. \cite{girSparkCluster,girSparkYarn}
 \end{frame}
 
-\begin{frame}{Recorrido de un trabajo paralelo}
-  [PENDIENTE: contenido verificado y cita]\par
+\begin{frame}{Práctica RTV en una computadora}
+	\textbf{Cuatro vehículos ficticios} \quad Spark \texttt{local[*]}
+	
+	\medskip
+	\texttt{parallelize()} divide los datos \(\rightarrow\)
+	\texttt{map()} define la operación\\
+	\texttt{collect()} activa el cálculo y reúne los resultados. \cite{girSparkRdd}
+	
+	\medskip
+	\begin{tabular}{@{}rcc@{}}
+		\toprule
+		Particiones & Tareas completadas & Tiempo promedio\\
+		\midrule
+		2 & 2/2 & 1,8195 s\\
+		4 & 4/4 & 3,4206 s\\
+		\bottomrule
+	\end{tabular}
+	
+	\smallskip
+	{\footnotesize Fuente: \href{https://github.com/BryanLomb/GA-SUM-01-EXP-1-Exposicion-1er-Corte-Analisis-de-un-Sistema-Distribuido-Real/commit/b998007a13fb2a36c58156077c1bd705cc9a2854}{registro de la práctica, dos mediciones por configuración}.}
+	
+	\medskip
+	En esta prueba, aumentar las particiones elevó el tiempo. En clúster también importan el reparto y la ubicación de los datos. \cite{girSparkPartitions,girSparkLocality}
 \end{frame}
