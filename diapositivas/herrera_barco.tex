@@ -56,31 +56,33 @@
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
 
-\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026,hbSaleh2025}}
+\renewcommand{\fuentespie}{Fuentes: \cite{hbSimoes2026}}
 \begin{frame}{Espera y avance de tareas}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{0.48\textwidth}
-      \begin{block}{Sincrónica}
-        \small
-        \begin{itemize}
-          \item El emisor \textbf{espera} la respuesta.
-          \item Ejemplos: REST y gRPC.~\cite{hbSimoes2026}
-        \end{itemize}
-      \end{block}
+      \small\textbf{Sincrónica:} el emisor espera la respuesta (REST, gRPC).~\cite{hbSimoes2026}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{Asincrónica}
-        \small
-        \begin{itemize}
-          \item No se espera respuesta inmediata.~\cite{hbSimoes2026}
-          \item Ejemplos: MQTT y pub/sub.~\cite{hbSimoes2026,hbSaleh2025}
-        \end{itemize}
-      \end{block}
+      \small\textbf{Asincrónica:} no se espera respuesta inmediata.~\cite{hbSimoes2026}
     \end{column}
   \end{columns}
 
-  \vspace{0.8em}
+  \medskip
   \centering
-  {\small En paralelo: la asincronía deja avanzar otras tareas mientras una espera.}
+  \input{figuras/notificacion_ssdc.tex}
+
+  \medskip
+  {\small
+  \begin{tabular}{@{}cccc@{}}
+    \toprule
+    Hilos & Correos entregados & Tiempo promedio & Aceleración\\
+    \midrule
+    1 & 15/16 & 8064 ms & ---\\
+    8 & 15/16 & 1035,5 ms & 7,79$\times$\\
+    \bottomrule
+  \end{tabular}\par}
+
+  \smallskip
+  {\scriptsize Práctica SSDC: 16 postulantes ficticios, 500 ms por correo simulado; el postulante 5 falla y los demás continúan.}
 \end{frame}
 \renewcommand{\fuentespie}{Fuentes: [PENDIENTE]}
