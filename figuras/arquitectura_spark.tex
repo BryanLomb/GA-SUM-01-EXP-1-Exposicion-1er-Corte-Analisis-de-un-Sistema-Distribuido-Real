@@ -1,0 +1,18 @@
+
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  caja/.style={draw=blue!60!black, fill=blue!5, rounded corners=2pt,
+    align=center, minimum height=0.85cm, text width=2.75cm},
+  flujo/.style={-{Stealth[length=2mm]}, thick, draw=blue!60!black}
+]
+\node[caja] (driver) at (0,0) {\textbf{Driver}\\Coordina};
+\node[caja] (gestor) at (0,2.05) {\textbf{Gestor del clúster}\\Asigna recursos};
+\node[caja] (nodo1) at (8.4,2.05) {\textbf{Nodo A}\\Ejecutor y tareas};
+\node[caja] (nodo2) at (8.4,0) {\textbf{Nodo B}\\Ejecutor y tareas};
+\draw[flujo] (driver) -- node[left,font=\scriptsize]{Solicita recursos} (gestor);
+\draw[flujo] (gestor) -- node[above,font=\scriptsize]{Recursos} (nodo1);
+
+\draw[flujo,<->] (driver.east) -- node[below,font=\scriptsize]{Tareas y resultados} (nodo2.west);
+\draw[flujo,<->] (driver.north east) -- (3.0,0.43) |- ([yshift=-0.3cm]nodo1.west);
+\draw[flujo] (gestor.south east) -- (6.15,1.62) |- ([yshift=0.3cm]nodo2.west);
+\end{tikzpicture}
