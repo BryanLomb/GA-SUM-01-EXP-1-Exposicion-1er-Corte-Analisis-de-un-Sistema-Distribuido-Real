@@ -1,6 +1,6 @@
 # Computación paralela aplicada a los PFC
 
-**Enlace al video:** [PENDIENTE: enlace al video]
+**Enlace al video:** https://youtu.be/nXuf7qxSEiE
 
 ## Descripción del repositorio
 
